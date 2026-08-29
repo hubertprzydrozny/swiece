@@ -40,14 +40,15 @@ export function Nav() {
       <div className="border-b border-line/60 bg-surface/90 backdrop-blur-xs text-center text-muted font-mono text-2xs py-1.5 px-4">
         <NowMoment />
       </div>
-      <nav
-        className={cn(
-          "mx-auto max-w-5xl rounded-full border transition-all duration-300 shadow-sm mt-2 mb-1",
-          scrolled
-            ? "border-line bg-surface/95 backdrop-blur-md shadow-md"
-            : "border-line/60 bg-surface/80 backdrop-blur-sm",
-        )}
-      >
+      <div className="px-3 pt-2 pb-1 md:px-5">
+        <nav
+          className={cn(
+            "mx-auto max-w-5xl rounded-full border transition-all duration-300 shadow-sm",
+            scrolled
+              ? "border-line bg-surface/95 backdrop-blur-md shadow-md"
+              : "border-line/60 bg-surface/80 backdrop-blur-sm",
+          )}
+        >
         <div className="flex h-14 items-center justify-between gap-4 px-4 md:px-6">
           <button
             type="button"
@@ -115,6 +116,7 @@ export function Nav() {
           </div>
         ) : null}
       </nav>
+      </div>
     </header>
   );
 }
