@@ -84,18 +84,11 @@ function ProductPage() {
     <div>
       <section className="mx-auto grid max-w-6xl gap-10 px-5 py-10 md:grid-cols-2 md:gap-16 md:px-8 md:py-16">
         <div className="space-y-4">
-          <div className="overflow-hidden border border-line bg-surface">
+          <div className="overflow-hidden rounded-2xl border border-line bg-surface p-2 shadow-sm">
             <img
               src={product.image}
               alt={product.name}
-              className="aspect-4/5 w-full object-cover"
-            />
-          </div>
-          <div className="overflow-hidden border border-line">
-            <img
-              src={product.scene}
-              alt=""
-              className="aspect-video w-full object-cover"
+              className="aspect-4/5 w-full rounded-xl object-cover"
             />
           </div>
         </div>

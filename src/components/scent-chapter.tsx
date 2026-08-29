@@ -89,7 +89,7 @@ export function ScentChapter({
           >
             <div className="aspect-4/5 overflow-hidden border border-line">
               <img
-                src={product.scene || product.image}
+                src={product.image}
                 alt={product.name}
                 className="image-zoom h-full w-full object-cover"
                 loading="lazy"
