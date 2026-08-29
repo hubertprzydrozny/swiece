@@ -207,7 +207,7 @@ function QuickProducts() {
                   onClick={(e) => handleAddToCart(product, e)}
                   className="rounded-full px-5 py-2 text-xs font-medium"
                 >
-                  Dodaj
+                  Dodaj do koszyka
                 </Button>
               </div>
             </div>

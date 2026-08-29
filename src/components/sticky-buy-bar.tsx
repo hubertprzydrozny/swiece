@@ -64,7 +64,7 @@ export function StickyBuyBar({ product }: StickyBuyBarProps) {
           >
             <ShoppingBag className="size-4" />
             <span className="hidden sm:inline">Dodaj do koszyka</span>
-            <span className="sm:hidden">{product.price} zł · Dodaj</span>
+            <span className="sm:hidden">{product.price} zł · Dodaj do koszyka</span>
             <ArrowRight className="size-4 hidden sm:inline" />
           </button>
         </div>

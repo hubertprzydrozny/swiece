@@ -49,44 +49,46 @@ export function Nav() {
               : "border-line/60 bg-surface/80 backdrop-blur-sm",
           )}
         >
-        <div className="flex h-14 items-center justify-between gap-4 px-4 md:px-6">
-          <button
-            type="button"
-            className="flex size-10 items-center justify-center rounded-full border border-line md:hidden"
-            aria-label={menuOpen ? "Zamknij menu" : "Otwórz menu"}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((v) => !v)}
-          >
-            {menuOpen ? (
-              <X className="size-4" strokeWidth={1.5} />
-            ) : (
-              <Menu className="size-4" strokeWidth={1.5} />
-            )}
-          </button>
+        <div className="relative flex h-14 items-center justify-between gap-4 px-4 md:px-6">
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              className="flex size-10 items-center justify-center rounded-full border border-line md:hidden"
+              aria-label={menuOpen ? "Zamknij menu" : "Otwórz menu"}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((v) => !v)}
+            >
+              {menuOpen ? (
+                <X className="size-4" strokeWidth={1.5} />
+              ) : (
+                <Menu className="size-4" strokeWidth={1.5} />
+              )}
+            </button>
+
+            <div className="hidden items-center gap-1 md:flex bg-bg/50 p-1 rounded-full border border-line/40">
+              {LINKS.map((link) => (
+                <Link
+                  key={link.label}
+                  to={link.to}
+                  hash={link.hash}
+                  className="font-mono text-2xs uppercase tracking-caps text-muted px-4 py-1.5 rounded-full transition-colors hover:bg-surface hover:text-fg"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
 
           <Link
             to="/"
-            className="font-sans text-lg font-semibold tracking-brand uppercase text-fg px-2"
+            className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-sans text-lg font-semibold tracking-brand uppercase text-fg px-2"
           >
             Lomma
           </Link>
 
-          <div className="hidden items-center gap-1 md:flex bg-bg/50 p-1 rounded-full border border-line/40">
-            {LINKS.map((link) => (
-              <Link
-                key={link.label}
-                to={link.to}
-                hash={link.hash}
-                className="font-mono text-2xs uppercase tracking-caps text-muted px-4 py-1.5 rounded-full transition-colors hover:bg-surface hover:text-fg"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-
           <button
             type="button"
-            className="flex h-9 items-center gap-2 rounded-full border border-line bg-elevated px-4 font-mono text-2xs uppercase tracking-caps text-fg transition-all hover:bg-accent hover:text-ink hover:border-accent"
+            className="ml-auto flex h-9 items-center gap-2 rounded-full border border-line bg-elevated px-4 font-mono text-2xs uppercase tracking-caps text-fg transition-all hover:bg-accent hover:text-ink hover:border-accent"
             onClick={() => setCartOpen(true)}
             aria-label={`Koszyk, ${count} produktów`}
           >

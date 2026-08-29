@@ -267,7 +267,7 @@ function ProductPage() {
               </p>
             </div>
             <Button type="button" size="sm" onClick={addProduct}>
-              Dodaj
+              Dodaj do koszyka
             </Button>
           </div>
         </div>

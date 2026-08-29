@@ -116,9 +116,10 @@ export function calculateBundlePrice(quantity: number) {
 }
 
 export function scentForHour(hour: number): Product {
-  if (hour >= 5 && hour < 12) return PRODUCTS.ogrod;
-  if (hour >= 12 && hour < 20) return PRODUCTS.karkonosze;
-  return PRODUCTS.baltyk;
+  if (hour >= 5 && hour < 11) return PRODUCTS.ogrod;
+  if (hour >= 18 && hour < 23) return PRODUCTS.karkonosze;
+  if (hour >= 23 || hour < 5) return PRODUCTS.baltyk;
+  return PRODUCTS.ogrod;
 }
 
 export const PRODUCT_FACTS = [

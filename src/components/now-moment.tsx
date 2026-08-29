@@ -1,21 +1,26 @@
 import { useEffect, useState } from "react";
 import { ClockTime } from "@/components/clock";
-import { scentForHour } from "@/lib/products";
 
 function pad(n: number) {
   return n.toString().padStart(2, "0");
 }
 
+function hourLabel(hour: number) {
+  if (hour >= 5 && hour < 11) return "Poranek w Ogrodzie";
+  if (hour >= 18 && hour < 23) return "Wieczór w Karkonoszach";
+  if (hour >= 23 || hour < 5) return "Wieczór nad Bałtykiem";
+  return "Spokojny rytuał codzienności";
+}
+
 export function NowMoment() {
-  const [now, setNow] = useState<{ time: string; name: string } | null>(null);
+  const [now, setNow] = useState<{ time: string; label: string } | null>(null);
 
   useEffect(() => {
     const tick = () => {
       const date = new Date();
-      const scent = scentForHour(date.getHours());
       setNow({
         time: `${pad(date.getHours())}:${pad(date.getMinutes())}`,
-        name: scent.name,
+        label: hourLabel(date.getHours()),
       });
     };
     tick();
@@ -33,7 +38,7 @@ export function NowMoment() {
 
   return (
     <span className="font-mono text-2xs uppercase tracking-caps text-fg/80">
-      Teraz <ClockTime time={now.time} /> — {now.name}
+      Teraz <ClockTime time={now.time} /> — {now.label}
       <span className="mx-3 hidden sm:inline" aria-hidden="true">
         ·
       </span>
