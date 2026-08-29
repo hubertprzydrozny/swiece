@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, ShoppingBag, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NowMoment } from "@/components/now-moment";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { cartCount, useCartStore } from "@/store/cart";
 import { useUiStore } from "@/store/ui";
@@ -90,18 +91,23 @@ export function Nav() {
               </div>
             </div>
 
-            <button
-              type="button"
-              className="justify-self-end text-fg transition-colors hover:text-accent"
-              onClick={() => setCartOpen(true)}
-              aria-label={`Koszyk, ${count} produktów`}
-            >
-              <span className="flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.08em]">
-                <ShoppingBag className="size-4" strokeWidth={1.4} />
-                <span className="hidden sm:inline">Koszyk</span>
-                <span className="tabular-nums">{count}</span>
-              </span>
-            </button>
+            <div className="flex items-center justify-self-end gap-3 md:gap-5">
+              <Button asChild size="sm" className="hidden lg:inline-flex">
+                <Link to="/sklep">Odkryj zapachy</Link>
+              </Button>
+              <button
+                type="button"
+                className="text-fg transition-colors hover:text-accent"
+                onClick={() => setCartOpen(true)}
+                aria-label={`Koszyk, ${count} produktów`}
+              >
+                <span className="flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.08em]">
+                  <ShoppingBag className="size-4" strokeWidth={1.4} />
+                  <span className="hidden sm:inline">Koszyk</span>
+                  <span className="tabular-nums">{count}</span>
+                </span>
+              </button>
+            </div>
           </div>
 
           {menuOpen ? (
@@ -118,9 +124,14 @@ export function Nav() {
                     {link.label}
                   </Link>
                 ))}
+                <Button asChild className="mt-5 w-full">
+                  <Link to="/sklep" onClick={() => setMenuOpen(false)}>
+                    Odkryj zapachy
+                  </Link>
+                </Button>
                 <button
                   type="button"
-                  className="mt-5 inline-flex h-12 items-center justify-center border border-fg bg-fg px-4 font-sans text-sm font-medium text-ink"
+                  className="mt-3 inline-flex h-12 w-full items-center justify-center border border-line-strong bg-transparent px-4 font-sans text-sm font-medium text-fg transition-colors hover:border-fg"
                   onClick={() => {
                     setMenuOpen(false);
                     setCartOpen(true);

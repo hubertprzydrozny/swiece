@@ -460,7 +460,7 @@ function GiftBand() {
           Dla kogoś lub dla siebie. Gotowa do wręczenia.
         </p>
         <Button asChild className="mt-8">
-          <Link to="/sklep">Wybierz prezent</Link>
+          <Link to="/sklep">Odkryj zapachy</Link>
         </Button>
       </div>
     </section>

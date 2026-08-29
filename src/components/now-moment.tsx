@@ -31,7 +31,7 @@ export function NowMoment() {
   if (!now) {
     return (
       <span className="font-mono text-2xs uppercase tracking-caps text-fg/80">
-        Darmowa dostawa od 199 zł · Ręcznie zalewane w Polsce
+        Zapachy do domu inspirowane miejscami i godzinami
       </span>
     );
   }
@@ -39,10 +39,6 @@ export function NowMoment() {
   return (
     <span className="font-mono text-2xs uppercase tracking-caps text-fg/80">
       Teraz <ClockTime time={now.time} /> — {now.label}
-      <span className="mx-3 hidden sm:inline" aria-hidden="true">
-        ·
-      </span>
-      <span className="hidden sm:inline">Darmowa dostawa od 199 zł</span>
     </span>
   );
 }
