@@ -75,7 +75,7 @@ export function ScentChapter({
               className="inline-flex h-14 items-center gap-2 rounded-full border border-line bg-surface px-6 font-mono text-2xs font-semibold uppercase tracking-caps text-fg hover:bg-elevated hover:border-accent transition-colors"
             >
               <ShoppingBag className="size-4" strokeWidth={1.5} />
-              <span>Dodaj ({product.price} zł)</span>
+              <span>Dodaj do koszyka</span>
             </button>
           </div>
         </div>

@@ -9,7 +9,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { PRODUCTS } from "@/lib/products";
+import { FREE_SHIPPING_THRESHOLD, PRODUCTS } from "@/lib/products";
 import { formatPrice } from "@/lib/utils";
 import { cartTotals, useCartStore } from "@/store/cart";
 import { useUiStore } from "@/store/ui";
@@ -91,16 +91,25 @@ export function CartDrawer() {
           )}
         </div>
         {items.length > 0 ? (
-          <div className="border-t border-line px-6 py-5">
-            {totals.missingForFree > 0 ? (
-              <p className="mb-4 font-mono text-2xs uppercase tracking-caps text-muted">
-                Do darmowej dostawy brakuje {formatPrice(totals.missingForFree)}
-              </p>
-            ) : (
-              <p className="mb-4 font-mono text-2xs uppercase tracking-caps text-accent">
-                Darmowa dostawa
-              </p>
-            )}
+          <div className="border-t border-line bg-elevated/70 px-6 py-5">
+            <div className="mb-5 rounded-2xl border border-line bg-surface/60 p-4">
+              <div className="flex items-center justify-between gap-3 font-mono text-2xs uppercase tracking-caps">
+                <span className={totals.missingForFree > 0 ? "text-muted" : "text-accent"}>
+                  {totals.missingForFree > 0
+                    ? `Brakuje ${formatPrice(totals.missingForFree)}`
+                    : "Darmowa dostawa ✓"}
+                </span>
+                <span className="text-muted">od {formatPrice(FREE_SHIPPING_THRESHOLD)}</span>
+              </div>
+              <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-line">
+                <div
+                  className="h-full rounded-full bg-accent transition-[width] duration-500"
+                  style={{
+                    width: `${Math.min(100, (totals.subtotal / FREE_SHIPPING_THRESHOLD) * 100)}%`,
+                  }}
+                />
+              </div>
+            </div>
             {totals.discount > 0 ? (
               <div className="mb-2 flex justify-between text-sm text-accent">
                 <span>Rabat za zestaw</span>

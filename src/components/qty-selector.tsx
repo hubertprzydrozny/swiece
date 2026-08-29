@@ -15,13 +15,13 @@ export function QtySelector({
   return (
     <div
       className={cn(
-        "inline-flex h-12 items-stretch border border-line-strong",
+        "inline-flex h-12 items-stretch overflow-hidden rounded-full border border-line-strong bg-elevated",
         className,
       )}
     >
       <button
         type="button"
-        className="flex w-11 items-center justify-center text-fg transition-colors hover:text-accent"
+        className="flex w-11 items-center justify-center text-fg transition-colors hover:bg-surface hover:text-accent"
         aria-label="Zmniejsz liczbę"
         onClick={() => onChange(Math.max(min, value - 1))}
       >
@@ -32,7 +32,7 @@ export function QtySelector({
       </span>
       <button
         type="button"
-        className="flex w-11 items-center justify-center text-fg transition-colors hover:text-accent"
+        className="flex w-11 items-center justify-center text-fg transition-colors hover:bg-surface hover:text-accent"
         aria-label="Zwiększ liczbę"
         onClick={() => onChange(value + 1)}
       >

@@ -82,13 +82,13 @@ function ProductPage() {
 
   return (
     <div>
-      <section className="mx-auto grid max-w-6xl gap-10 px-5 py-10 md:grid-cols-2 md:gap-16 md:px-8 md:py-16">
+      <section className="mx-auto grid max-w-6xl gap-10 px-5 py-10 md:grid-cols-[1.1fr_0.9fr] md:gap-16 md:px-8 md:py-16">
         <div className="space-y-4">
-          <div className="overflow-hidden rounded-2xl border border-line bg-surface p-2 shadow-sm">
+          <div className="overflow-hidden rounded-[2rem] border border-line bg-[#f0e7dc] p-2 shadow-[0_25px_60px_rgba(17,15,12,0.08)]">
             <img
               src={product.image}
               alt={product.name}
-              className="aspect-4/5 w-full rounded-xl object-cover"
+              className="aspect-[4/5] w-full rounded-[1.5rem] object-cover"
             />
           </div>
         </div>
@@ -100,9 +100,14 @@ function ProductPage() {
           <h1 className="mt-3 font-display text-4xl font-medium tracking-display md:text-5xl">
             {product.name}
           </h1>
-          <p className="mt-4 font-mono text-xl tabular-nums">
-            {formatPrice(product.price)}
-          </p>
+          <div className="mt-5 flex items-end justify-between gap-4 border-b border-line pb-5">
+            <p className="font-mono text-xl tabular-nums text-fg">
+              {formatPrice(product.price)}
+            </p>
+            <p className="font-mono text-2xs uppercase tracking-caps text-accent">
+              Darmowa dostawa od 199 zł
+            </p>
+          </div>
           <p className="mt-5 max-w-md leading-relaxed text-muted">
             {product.description}
           </p>
@@ -110,33 +115,36 @@ function ProductPage() {
             180 g · ~40 h palenia · ręcznie zalewana w Polsce
           </p>
 
-          <div ref={actionsRef} className="mt-8 flex flex-wrap items-center gap-3">
+          <div ref={actionsRef} className="mt-8 flex flex-col gap-3 sm:flex-row">
             <QtySelector value={qty} onChange={setQty} />
-            <Button type="button" className="flex-1 min-w-40" onClick={addProduct}>
-              Dodaj do koszyka
+            <Button type="button" size="lg" className="min-w-0 flex-1 rounded-full" onClick={addProduct}>
+              Dodaj do koszyka · {formatPrice(product.price * qty)}
             </Button>
           </div>
-          <p className="mt-3 font-mono text-2xs uppercase tracking-caps text-accent">
-            Darmowa dostawa od 199 zł
-          </p>
 
-          <div className="mt-10 border-t border-line pt-8">
+          <div className="mt-5 grid grid-cols-1 gap-2 font-mono text-2xs uppercase tracking-caps text-muted sm:grid-cols-3">
+            <div className="rounded-xl border border-line bg-surface/50 px-3 py-3 text-center">Bezpieczna dostawa</div>
+            <div className="rounded-xl border border-line bg-surface/50 px-3 py-3 text-center">Ręcznie zalewana</div>
+            <div className="rounded-xl border border-line bg-surface/50 px-3 py-3 text-center">180 g · ~40 h</div>
+          </div>
+
+          <div className="mt-10 rounded-[1.5rem] border border-line bg-[#f7f1e8] p-5 md:p-6">
             <p className="font-mono text-2xs uppercase tracking-caps text-accent">
               Nuty zapachowe
             </p>
-            <p className="mt-3 font-mono text-sm uppercase tracking-caps">
+            <p className="mt-3 font-mono text-sm uppercase tracking-caps text-[#141210]">
               {product.notes.join(" · ")}
             </p>
             <p className="mt-6 font-mono text-2xs uppercase tracking-caps text-muted">
               Charakter
             </p>
-            <p className="mt-2 text-sm">{product.character}</p>
+            <p className="mt-2 text-sm text-[#2a2723]">{product.character}</p>
           </div>
 
-          <div className="mt-10 border border-line bg-surface p-5 md:p-6">
-            <p className="font-display text-xl">W zestawie korzystniej</p>
+          <div className="mt-8 border border-line bg-surface p-5 md:p-6">
+            <p className="font-display text-xl text-fg">W zestawie korzystniej</p>
             <div className="mt-5 border-t border-line pt-5">
-              <p className="text-sm">Dwa zapachy</p>
+              <p className="text-sm text-fg">Dwa zapachy</p>
               <p className="mt-1 text-xs text-muted">
                 {product.name} + drugi · {formatPrice(169)} · oszczędzasz{" "}
                 {formatPrice(9)}
@@ -178,7 +186,7 @@ function ProductPage() {
             </div>
             <div className="mt-5 flex flex-col gap-3 border-t border-line pt-5 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <p className="text-sm">Cała kolekcja</p>
+                <p className="text-sm text-fg">Cała kolekcja</p>
                 <p className="mt-1 text-xs text-muted">
                   Karkonosze + Ogród + Bałtyk · {formatPrice(239)} · oszczędzasz{" "}
                   {formatPrice(28)} · darmowa dostawa
@@ -204,7 +212,7 @@ function ProductPage() {
         </div>
       </section>
 
-      <section className="border-t border-line">
+      <section className="border-t border-line bg-[#f7f1e8]/30">
         <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 md:grid-cols-3 md:px-8">
           <div>
             <h2 className="font-display text-2xl">Szczegóły</h2>
@@ -258,7 +266,7 @@ function ProductPage() {
       </section>
 
       {sticky ? (
-        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-bg/95 px-4 py-3 backdrop-blur-md md:hidden">
+        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-elevated/95 px-4 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 shadow-[0_-12px_30px_rgba(41,41,37,0.08)] backdrop-blur-md md:hidden">
           <div className="flex items-center justify-between gap-3">
             <div className="min-w-0">
               <p className="truncate text-sm">{product.name}</p>

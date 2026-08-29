@@ -2,17 +2,17 @@
 @import "tw-animate-css";
 
 @theme {
-  --color-bg: #100e0c;
-  --color-surface: #1a1612;
-  --color-elevated: #221e19;
-  --color-fg: #f4efe6;
-  --color-muted: #9c9488;
-  --color-accent: #8b9278;
-  --color-paper: #f4efe6;
-  --color-ink: #141210;
-  --color-line: rgb(244 239 230 / 0.12);
-  --color-line-strong: rgb(244 239 230 / 0.22);
-  --color-danger: #c45c3e;
+  --color-bg: #f4efe5;
+  --color-surface: #eadfce;
+  --color-elevated: #fffaf2;
+  --color-fg: #292925;
+  --color-muted: #746f66;
+  --color-accent: #6e7a55;
+  --color-paper: #f4efe5;
+  --color-ink: #fffaf2;
+  --color-line: rgb(41 41 37 / 0.14);
+  --color-line-strong: rgb(41 41 37 / 0.28);
+  --color-danger: #a6552f;
 
   --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
@@ -43,18 +43,28 @@
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-:root[data-theme="light"] {
-  --color-bg: #f4efe5;
-  --color-surface: #eadfce;
-  --color-elevated: #fffaf2;
-  --color-fg: #292925;
-  --color-muted: #746f66;
-  --color-accent: #6e7a55;
-  --color-paper: #f4efe5;
-  --color-ink: #fffaf2;
-  --color-line: rgb(41 41 37 / 0.14);
-  --color-line-strong: rgb(41 41 37 / 0.28);
-  --color-danger: #a6552f;
+
+:root[data-theme="dark"] {
+  --color-bg: #100e0c;
+  --color-surface: #1a1612;
+  --color-elevated: #221e19;
+  --color-fg: #f4efe6;
+  --color-muted: #9c9488;
+  --color-accent: #8b9278;
+  --color-paper: #f4efe6;
+  --color-ink: #141210;
+  --color-line: rgb(244 239 230 / 0.12);
+  --color-line-strong: rgb(244 239 230 / 0.22);
+  --color-danger: #c45c3e;
+}
+
+/* UX polish: keep the light storefront stable before React hydrates. */
+:root {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 @layer base {
@@ -164,5 +174,21 @@
     filter: none;
     transform: none;
     opacity: 1;
+  }
+}
+
+
+@layer base {
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
   }
 }

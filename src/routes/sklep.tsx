@@ -27,16 +27,26 @@ function ShopPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
-      <span className="inline-flex items-center px-3.5 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-2xs uppercase tracking-brand text-accent font-medium mb-3">
-        Kolekcja 01
-      </span>
-      <h1 className="font-display text-5xl font-medium tracking-display text-fg">
-        Zapisane chwile.
-      </h1>
-      <p className="mt-4 max-w-xl text-muted text-base">
-        Trzy miejsca. Trzy pory dnia. Trzy wspomnienia. Wybierz zapach, który
-        przywoła Twój ulubiony moment.
-      </p>
+      <div className="max-w-3xl">
+        <span className="inline-flex items-center rounded-full border border-accent/20 bg-accent/10 px-3.5 py-1 font-mono text-2xs font-medium uppercase tracking-brand text-accent">
+          Kolekcja 01 · 3 zapachy
+        </span>
+        <h1 className="mt-5 font-display text-5xl font-medium tracking-display text-fg md:text-6xl">
+          Zapisane chwile.
+        </h1>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
+          Trzy miejsca. Trzy pory dnia. Trzy wspomnienia. Wybierz zapach, który
+          przywoła Twój ulubiony moment.
+        </p>
+      </div>
+
+      <div className="mt-8 grid gap-3 sm:grid-cols-3">
+        {['180 g · ~40 h palenia', 'Ręcznie zalewane w Polsce', 'Darmowa dostawa od 199 zł'].map((item) => (
+          <div key={item} className="rounded-2xl border border-line bg-surface/55 px-4 py-3 font-mono text-2xs uppercase tracking-caps text-muted">
+            {item}
+          </div>
+        ))}
+      </div>
 
       <div className="mt-12 grid gap-6 md:grid-cols-3">
         {PRODUCT_LIST.map((product) => (
