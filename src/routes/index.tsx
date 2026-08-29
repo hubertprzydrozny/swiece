@@ -54,7 +54,7 @@ function Home() {
 
 function Hero() {
   return (
-    <section className="relative isolate min-h-[78svh] overflow-hidden">
+    <section className="relative isolate min-h-[78svh] overflow-hidden bg-[#100e0c] text-[#f4efe6]">
       <video
         className="absolute inset-0 h-full w-full object-cover"
         autoPlay
@@ -66,31 +66,31 @@ function Hero() {
       >
         <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-bg/55" />
-      <div className="absolute inset-0 bg-linear-to-t from-bg via-bg/30 to-transparent" />
+      <div className="absolute inset-0 bg-[#100e0c]/60" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#100e0c] via-[#100e0c]/30 to-transparent" />
       <div className="relative z-10 mx-auto flex min-h-[78svh] max-w-6xl flex-col justify-end px-5 pb-12 pt-28 md:px-8 md:pb-14">
-        <p className="reveal font-mono text-2xs uppercase tracking-caps text-accent">
+        <p className="reveal font-mono text-2xs uppercase tracking-caps text-[#8b9278]">
           Kolekcja 01 — zapisane chwile
         </p>
-        <h1 className="reveal reveal-delay-1 mt-5 max-w-3xl font-display text-5xl font-medium leading-[0.95] tracking-display text-fg">
+        <h1 className="reveal reveal-delay-1 mt-5 max-w-3xl font-display text-5xl font-medium leading-[0.95] tracking-display text-[#f4efe6]">
           Nie zatrzymasz chwili.
           <br />
-          <span className="italic text-accent">Zachowasz jej zapach.</span>
+          <span className="italic text-[#8b9278]">Zachowasz jej zapach.</span>
         </h1>
-        <p className="reveal reveal-delay-2 mt-6 max-w-md text-base leading-relaxed text-fg/80">
+        <p className="reveal reveal-delay-2 mt-6 max-w-md text-base leading-relaxed text-[#f4efe6]/80">
           Trzy zapachy inspirowane miejscami, godzinami i atmosferą, do których
           chce się wracać.
         </p>
-        <p className="reveal reveal-delay-3 mt-4 font-mono text-2xs uppercase tracking-caps text-fg/70">
+        <p className="reveal reveal-delay-3 mt-4 font-mono text-2xs uppercase tracking-caps text-[#f4efe6]/70">
           180 g · ~40 h palenia · ręcznie zalewane w Polsce
         </p>
         <div className="reveal reveal-delay-4 mt-8 flex flex-wrap items-center gap-4">
-          <Button asChild size="lg">
+          <Button asChild size="lg" className="bg-[#f4efe6] text-[#141210] hover:bg-[#8b9278] hover:text-[#141210]">
             <Link to="/sklep">Odkryj zapachy</Link>
           </Button>
           <a
             href="#zapachy"
-            className="inline-flex h-14 items-center gap-2 font-mono text-2xs uppercase tracking-caps text-fg/80 transition-colors hover:text-fg"
+            className="inline-flex h-14 items-center gap-2 font-mono text-2xs uppercase tracking-caps text-[#f4efe6]/80 transition-colors hover:text-[#f4efe6]"
           >
             Zobacz kolekcję
             <ArrowDown className="size-4" strokeWidth={1.5} />
@@ -102,33 +102,80 @@ function Hero() {
 }
 
 function QuickProducts() {
+  const add = useCartStore((s) => s.add);
+  const { setCartOpen, setLastAdded } = useUiStore();
+
+  const handleAddToCart = (product: typeof PRODUCT_LIST[number], e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    add(product.id, 1);
+    setLastAdded(product.name);
+    setCartOpen(true);
+  };
+
   return (
-    <section className="border-b border-line bg-bg" aria-label="Zapachy LOMMA">
-      <div className="mx-auto max-w-6xl px-5 py-5 md:px-8 md:py-6">
-        <div className="flex snap-x gap-3 overflow-x-auto pb-1 md:grid md:grid-cols-3 md:gap-4 md:overflow-visible">
+    <section className="border-b border-line bg-bg py-10" aria-label="Zapachy LOMMA">
+      <div className="mx-auto max-w-6xl px-5 md:px-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
+          <div>
+            <span className="font-mono text-2xs uppercase tracking-caps text-accent block">
+              Pierwsza Kolekcja
+            </span>
+            <h2 className="font-display text-2xl md:text-3xl text-fg font-medium">
+              Trzy zapachy. Wybierz swój rytuał.
+            </h2>
+          </div>
+          <span className="font-mono text-xs text-muted hidden md:inline">
+            180g · ~40h palenia · Wosk sojowy
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {PRODUCT_LIST.map((product) => (
-            <Link
+            <div
               key={product.id}
-              to={`/zapach/${product.id}`}
-              className="group flex min-w-[78vw] snap-start items-center gap-4 border border-line bg-surface p-3 transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-line-strong sm:min-w-[330px] md:min-w-0"
+              className="group flex flex-col justify-between border border-line bg-surface p-4 transition-all duration-300 hover:border-line-strong hover:shadow-md"
             >
-              <img
-                src={product.image}
-                alt={product.name}
-                className="size-20 shrink-0 object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-              />
-              <span className="min-w-0">
-                <span className="block font-mono text-2xs uppercase tracking-caps text-accent">
-                  {product.location} · {product.time}
-                </span>
-                <span className="mt-1 block truncate font-display text-xl leading-tight text-fg">
+              <Link to={`/zapach/${product.id}`} className="block">
+                <div className="aspect-4/5 overflow-hidden border border-line bg-elevated mb-4">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="image-zoom h-full w-full object-cover"
+                  />
+                </div>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-mono text-2xs uppercase tracking-caps text-accent font-medium">
+                    {product.location} · {product.time}
+                  </span>
+                  <span className="font-mono text-xs font-medium text-fg">
+                    {product.price} zł
+                  </span>
+                </div>
+                <h3 className="font-display text-2xl leading-tight text-fg group-hover:text-accent transition-colors">
                   {product.name}
-                </span>
-                <span className="mt-1 block font-mono text-xs text-muted">
-                  {product.price} zł <span className="text-accent">→</span>
-                </span>
-              </span>
-            </Link>
+                </h3>
+                <p className="mt-2 text-xs text-muted line-clamp-2">
+                  {product.description}
+                </p>
+              </Link>
+
+              <div className="mt-6 pt-4 border-t border-line flex items-center justify-between gap-3">
+                <Link
+                  to={`/zapach/${product.id}`}
+                  className="font-mono text-2xs uppercase tracking-caps text-muted hover:text-fg transition-colors"
+                >
+                  Poznaj zapach →
+                </Link>
+                <Button
+                  size="sm"
+                  onClick={(e) => handleAddToCart(product, e)}
+                  className="px-4 py-2 text-xs font-medium"
+                >
+                  Dodaj
+                </Button>
+              </div>
+            </div>
           ))}
         </div>
       </div>
