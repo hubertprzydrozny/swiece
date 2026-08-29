@@ -5,8 +5,6 @@ type UiState = {
   setCartOpen: (open: boolean) => void;
   lastAdded: string | null;
   setLastAdded: (name: string | null) => void;
-  theme: "light" | "dark";
-  setTheme: (theme: "light" | "dark") => void;
 };
 
 export const useUiStore = create<UiState>((set) => ({
@@ -14,6 +12,4 @@ export const useUiStore = create<UiState>((set) => ({
   setCartOpen: (cartOpen) => set({ cartOpen }),
   lastAdded: null,
   setLastAdded: (lastAdded) => set({ lastAdded }),
-  theme: "light",
-  setTheme: (theme) => set({ theme }),
 }));

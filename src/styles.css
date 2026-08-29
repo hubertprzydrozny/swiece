@@ -44,27 +44,9 @@
 }
 
 
-:root[data-theme="dark"] {
-  --color-bg: #100e0c;
-  --color-surface: #1a1612;
-  --color-elevated: #221e19;
-  --color-fg: #f4efe6;
-  --color-muted: #9c9488;
-  --color-accent: #8b9278;
-  --color-paper: #f4efe6;
-  --color-ink: #141210;
-  --color-line: rgb(244 239 230 / 0.12);
-  --color-line-strong: rgb(244 239 230 / 0.22);
-  --color-danger: #c45c3e;
-}
-
 /* UX polish: keep the light storefront stable before React hydrates. */
 :root {
   color-scheme: light;
-}
-
-:root[data-theme="dark"] {
-  color-scheme: dark;
 }
 
 @layer base {

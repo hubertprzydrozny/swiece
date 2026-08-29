@@ -104,42 +104,6 @@ function Hero() {
   );
 }
 
-// ─── Apple #1: Giant typographic interlude ─────────────────────────────────
-function TimeInterlude() {
-  const moments = [
-    { time: "07:15", label: "Poranek w Ogrodzie" },
-    { time: "19:42", label: "Wieczór w Karkonoszach" },
-    { time: "21:05", label: "Wieczór nad Bałtykiem" },
-  ];
-
-  return (
-    <section className="border-b border-line/40 bg-[#f4efe6] px-5 py-16 text-[#141210] md:px-8 md:py-20">
-      <div className="mx-auto max-w-5xl">
-        <p className="mb-8 font-mono text-2xs uppercase tracking-caps text-accent">
-          Kolekcja 01 · Trzy chwile
-        </p>
-
-        <div className="grid gap-5 md:grid-cols-3">
-          {moments.map(({ time, label }) => (
-            <div
-              key={time}
-              className="group rounded-[1.75rem] border border-[#d8cfc1] bg-[#f8f2ea] p-5 text-left transition-colors duration-300 hover:border-accent/40 hover:bg-[#f3eadb]"
-            >
-              <p className="font-mono text-2xs uppercase tracking-caps text-muted">
-                {time}
-              </p>
-              <h3 className="mt-4 font-display text-3xl leading-none text-fg md:text-4xl">
-                {label}
-              </h3>
-            </div>
-          ))}
-        </div>
-
-      </div>
-    </section>
-  );
-}
-
 function QuickProducts() {
   const add = useCartStore((s) => s.add);
   const { setCartOpen, setLastAdded } = useUiStore();
