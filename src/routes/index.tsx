@@ -27,6 +27,7 @@ function Home() {
   return (
     <>
       <Hero />
+      <TimeInterlude />
       <QuickProducts />
       <MomentLine />
       <QualityStrip />
@@ -101,6 +102,39 @@ function Hero() {
   );
 }
 
+// ─── Apple #1: Giant typographic interlude ─────────────────────────────────
+function TimeInterlude() {
+  return (
+    <div className="overflow-hidden bg-bg border-b border-line/40 py-20 md:py-32 px-5 text-center">
+      <p className="font-mono text-2xs uppercase tracking-caps text-accent mb-6">
+        Kolekcja 01 · Trzy chwile
+      </p>
+      <div className="flex flex-col gap-1 md:flex-row md:items-baseline md:justify-center md:gap-10">
+        {[
+          { time: "07:15", label: "Poranek w Ogrodzie" },
+          { time: "19:42", label: "Wieczór w Karkonoszach" },
+          { time: "21:05", label: "Wieczór nad Bałtykiem" },
+        ].map(({ time, label }) => (
+          <div key={time} className="group flex flex-col items-center">
+            <span
+              className="font-mono font-bold leading-none text-fg/10 group-hover:text-fg transition-colors duration-700"
+              style={{ fontSize: "clamp(3.5rem, 14vw, 9rem)", letterSpacing: "-0.03em" }}
+            >
+              {time}
+            </span>
+            <span className="mt-2 font-mono text-2xs uppercase tracking-caps text-muted group-hover:text-accent transition-colors duration-500">
+              {label}
+            </span>
+          </div>
+        ))}
+      </div>
+      <p className="mt-10 font-mono text-2xs uppercase tracking-caps text-muted/60 max-w-xs mx-auto">
+        Najedź na godzinę, żeby ją odkryć
+      </p>
+    </div>
+  );
+}
+
 function QuickProducts() {
   const add = useCartStore((s) => s.add);
   const { setCartOpen, setLastAdded } = useUiStore();
@@ -114,15 +148,15 @@ function QuickProducts() {
   };
 
   return (
-    <section className="border-b border-line bg-bg py-16" aria-label="Zapachy LOMMA">
+    <section className="bg-bg py-24 md:py-32" aria-label="Zapachy LOMMA">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
-        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-4 mb-8">
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-4 mb-14">
           <div>
-            <span className="inline-flex items-center px-3.5 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-2xs uppercase tracking-brand text-accent font-medium mb-3">
+            <span className="inline-flex items-center px-3.5 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-2xs uppercase tracking-brand text-accent font-medium mb-4">
               Pierwsza Kolekcja
             </span>
-            <h2 className="font-display text-3xl md:text-4xl text-fg font-medium">
-              Trzy zapachy. Wybierz swój rytuał.
+            <h2 className="font-display text-4xl md:text-5xl text-fg font-medium">
+              Trzy zapachy.<br />Wybierz swój rytuał.
             </h2>
           </div>
           <span className="font-mono text-xs text-muted">
@@ -130,14 +164,15 @@ function QuickProducts() {
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {PRODUCT_LIST.map((product) => (
             <div
               key={product.id}
-              className="group flex flex-col justify-between rounded-2xl border border-line bg-surface p-5 transition-all duration-300 hover:border-accent/40 hover:-translate-y-1 hover:shadow-lg"
+              className="group flex flex-col justify-between"
             >
               <Link to={`/zapach/${product.id}`} className="block">
-                <div className="aspect-4/5 rounded-xl overflow-hidden border border-line/60 bg-elevated mb-4">
+                {/* Apple: czyste zdjęcie bez ramek na kremowym tle */}
+                <div className="aspect-4/5 rounded-3xl overflow-hidden bg-elevated mb-6">
                   <img
                     src={product.image}
                     alt={product.name}
@@ -155,12 +190,12 @@ function QuickProducts() {
                 <h3 className="font-display text-2xl leading-tight text-fg group-hover:text-accent transition-colors">
                   {product.name}
                 </h3>
-                <p className="mt-2 text-xs text-muted line-clamp-2">
+                <p className="mt-2 text-sm text-muted line-clamp-2 leading-relaxed">
                   {product.description}
                 </p>
               </Link>
 
-              <div className="mt-6 pt-4 border-t border-line/60 flex items-center justify-between gap-3">
+              <div className="mt-6 flex items-center justify-between gap-3">
                 <Link
                   to={`/zapach/${product.id}`}
                   className="font-mono text-2xs uppercase tracking-caps text-muted hover:text-fg transition-colors"
@@ -182,6 +217,7 @@ function QuickProducts() {
     </section>
   );
 }
+
 
 function MomentLine() {
   return (

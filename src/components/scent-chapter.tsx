@@ -23,40 +23,39 @@ export function ScentChapter({
   };
 
   return (
-    <article className="border-b border-line bg-bg py-16 md:py-24">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 md:grid-cols-2 md:px-8 lg:gap-16">
+    <article className="border-b border-line bg-bg py-24 md:py-32">
+      <div className="mx-auto grid max-w-6xl items-center gap-16 px-5 md:grid-cols-2 md:px-8 lg:gap-24">
         <div className={reverse ? "md:order-2" : undefined}>
           <div className="flex items-center gap-3">
-            <span className="font-mono text-2xs uppercase tracking-caps text-accent font-medium">
+            <span className="inline-flex items-center px-3.5 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-2xs uppercase tracking-caps text-accent font-medium">
               {product.index} / {product.location}
             </span>
-            <span className="text-line font-mono text-2xs">·</span>
-            <span className="font-mono text-2xs uppercase tracking-caps text-muted">
+            <span className="font-mono text-2xs text-muted">
               {product.character}
             </span>
           </div>
 
-          <p className="mt-4 font-mono text-4xl tracking-display text-fg md:text-5xl">
+          <p className="mt-6 font-mono text-5xl md:text-6xl tracking-display text-fg/20 leading-none" style={{ letterSpacing: "-0.03em" }}>
             <ClockTime time={product.time} />
           </p>
 
-          <h2 className="mt-3 font-display text-4xl md:text-5xl font-medium tracking-display text-fg">
+          <h2 className="mt-4 font-display text-4xl md:text-5xl font-medium tracking-display text-fg leading-tight">
             {product.name}
           </h2>
 
-          <p className="mt-5 max-w-md text-base leading-relaxed text-muted">
+          <p className="mt-6 max-w-md text-base leading-relaxed text-muted">
             {product.description}
           </p>
 
-          <div className="mt-6 pt-5 border-t border-line">
-            <span className="font-mono text-2xs uppercase tracking-caps text-muted block mb-2">
+          <div className="mt-8 pt-6 border-t border-line">
+            <span className="font-mono text-2xs uppercase tracking-caps text-muted block mb-3">
               Nuty zapachowe
             </span>
             <div className="flex flex-wrap gap-2">
               {product.notes.map((note) => (
                 <span
                   key={note}
-                  className="px-3 py-1 rounded-full bg-surface border border-line font-mono text-2xs uppercase tracking-caps text-fg"
+                  className="px-3.5 py-1 rounded-full bg-surface border border-line font-mono text-2xs uppercase tracking-caps text-fg"
                 >
                   {note}
                 </span>
@@ -64,7 +63,7 @@ export function ScentChapter({
             </div>
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+          <div className="mt-10 flex flex-wrap items-center gap-4">
             <Button asChild size="lg" className="rounded-full px-8 font-semibold">
               <Link to="/zapach/$id" params={{ id: product.id }}>
                 Poznaj zapach
@@ -81,13 +80,14 @@ export function ScentChapter({
           </div>
         </div>
 
+        {/* Apple: czyste zdjęcie bez ramek, całe na kremowym tle */}
         <div className={reverse ? "md:order-1" : undefined}>
           <Link
             to="/zapach/$id"
             params={{ id: product.id }}
-            className="group relative mx-auto block overflow-hidden border border-line bg-surface p-3 transition-all duration-300 hover:border-line-strong hover:shadow-lg"
+            className="group relative mx-auto block overflow-hidden rounded-3xl bg-elevated transition-all duration-500 hover:shadow-2xl hover:-translate-y-2"
           >
-            <div className="aspect-4/5 overflow-hidden border border-line">
+            <div className="aspect-4/5 overflow-hidden">
               <img
                 src={product.image}
                 alt={product.name}
@@ -95,11 +95,8 @@ export function ScentChapter({
                 loading="lazy"
               />
             </div>
-            <div className="mt-3 flex items-center justify-between px-1">
-              <span className="font-mono text-2xs uppercase tracking-caps text-muted">
-                {product.name} — 180g
-              </span>
-              <span className="font-mono text-2xs text-accent">
+            <div className="absolute bottom-0 inset-x-0 p-5 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span className="font-mono text-2xs uppercase tracking-caps text-white/90">
                 Zobacz szczegóły →
               </span>
             </div>
