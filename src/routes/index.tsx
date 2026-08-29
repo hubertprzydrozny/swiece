@@ -70,7 +70,7 @@ function Hero() {
       <div className="absolute inset-0 bg-gradient-to-r from-[#100e0c]/80 via-[#100e0c]/35 to-[#f4efe6]/10" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#100e0c] via-[#100e0c]/20 to-transparent" />
       <div className="relative z-10 mx-auto flex min-h-[78svh] max-w-6xl flex-col justify-end px-5 pb-12 pt-28 md:px-8 md:pb-14">
-        <div className="max-w-xl rounded-full border border-[#f4efe6]/20 bg-[#100e0c]/25 px-4 py-2 backdrop-blur-sm">
+        <div className="max-w-xl border-l border-[#f4efe6]/40 pl-4">
           <p className="reveal font-mono text-[10px] uppercase tracking-[0.28em] text-[#d4d2c8] md:text-2xs">
             Kolekcja 01 — zapisane chwile
           </p>
@@ -87,7 +87,7 @@ function Hero() {
         <p className="reveal reveal-delay-3 mt-4 font-mono text-[10px] uppercase tracking-[0.2em] text-[#f4efe6]/70 md:text-2xs">
           180 g · ~40 h palenia · ręcznie zalewane w Polsce
         </p>
-        <div className="reveal reveal-delay-4 mt-8 flex flex-wrap items-center gap-4">
+        <div className="reveal reveal-delay-4 mt-8 flex flex-wrap items-center gap-3">
           <Button asChild size="lg" className="bg-[#f4efe6] text-[#141210] hover:bg-[#d0d5b8] hover:text-[#141210]">
             <Link to="/sklep">Odkryj zapachy</Link>
           </Button>
@@ -157,7 +157,7 @@ function QuickProducts() {
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-4 mb-14">
           <div>
-            <span className="inline-flex items-center px-3.5 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-2xs uppercase tracking-brand text-accent font-medium mb-4">
+            <span className="font-sans text-[11px] uppercase tracking-[0.12em] text-accent mb-4">
               Pierwsza Kolekcja
             </span>
             <h2 className="font-display text-4xl md:text-5xl text-fg font-medium">
@@ -173,10 +173,10 @@ function QuickProducts() {
           {PRODUCT_LIST.map((product) => (
             <div
               key={product.id}
-              className="group flex flex-col justify-between rounded-[2rem] border border-transparent p-2 transition-all duration-300 hover:border-line/70 hover:bg-surface/15"
+              className="group flex flex-col justify-between border-t border-line py-5 md:py-6"
             >
               <Link to={`/zapach/${product.id}`} className="block">
-                <div className="mb-6 overflow-hidden rounded-[1.7rem] bg-[#efe7db]">
+                <div className="mb-6 overflow-hidden bg-[#efe7db]">
                   <img
                     src={product.image}
                     alt={product.name}
@@ -184,7 +184,7 @@ function QuickProducts() {
                   />
                 </div>
                 <div className="mb-2 flex items-center justify-between gap-3">
-                  <span className="inline-flex items-center rounded-full border border-accent/20 bg-accent/10 px-3 py-0.5 font-mono text-2xs uppercase tracking-caps text-accent font-medium">
+                  <span className="font-sans text-[10px] uppercase tracking-[0.1em] text-muted">
                     {product.location} · {product.time}
                   </span>
                   <span className="font-mono text-xs font-semibold text-fg">
@@ -209,7 +209,7 @@ function QuickProducts() {
                 <Button
                   size="sm"
                   onClick={(e) => handleAddToCart(product, e)}
-                  className="rounded-full px-5 py-2 text-xs font-medium"
+                  className="px-5 py-2 text-xs font-medium"
                 >
                   Dodaj do koszyka
                 </Button>

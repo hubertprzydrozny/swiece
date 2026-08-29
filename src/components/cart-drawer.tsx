@@ -91,8 +91,8 @@ export function CartDrawer() {
           )}
         </div>
         {items.length > 0 ? (
-          <div className="border-t border-line bg-elevated/70 px-6 py-5">
-            <div className="mb-5 rounded-2xl border border-line bg-surface/60 p-4">
+          <div className="border-t border-line bg-bg px-6 py-5">
+            <div className="mb-5 border-y border-line bg-transparent py-4">
               <div className="flex items-center justify-between gap-3 font-mono text-2xs uppercase tracking-caps">
                 <span className={totals.missingForFree > 0 ? "text-muted" : "text-accent"}>
                   {totals.missingForFree > 0
@@ -101,9 +101,9 @@ export function CartDrawer() {
                 </span>
                 <span className="text-muted">od {formatPrice(FREE_SHIPPING_THRESHOLD)}</span>
               </div>
-              <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-line">
+              <div className="mt-3 h-1 overflow-hidden bg-line">
                 <div
-                  className="h-full rounded-full bg-accent transition-[width] duration-500"
+                  className="h-full bg-accent transition-[width] duration-500"
                   style={{
                     width: `${Math.min(100, (totals.subtotal / FREE_SHIPPING_THRESHOLD) * 100)}%`,
                   }}

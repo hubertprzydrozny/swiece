@@ -2,9 +2,9 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { ClockTime } from "@/components/clock";
+import { ComparisonTable } from "@/components/comparison-table";
 import { ProductCard } from "@/components/product-card";
 import { QtySelector } from "@/components/qty-selector";
-import { ComparisonTable } from "@/components/comparison-table";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -38,9 +38,7 @@ export const Route = createFileRoute("/zapach/$id")({
       },
       {
         name: "description",
-        content:
-          loaderData?.product.description ??
-          "Naturalna świeca sojowa LOMMA.",
+        content: loaderData?.product.description ?? "Naturalna świeca sojowa LOMMA.",
       },
     ],
   }),
@@ -65,10 +63,9 @@ function ProductPage() {
   useEffect(() => {
     const el = actionsRef.current;
     if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setSticky(!entry.isIntersecting),
-      { threshold: 0 },
-    );
+    const observer = new IntersectionObserver(([entry]) => setSticky(!entry.isIntersecting), {
+      threshold: 0,
+    });
     observer.observe(el);
     return () => observer.disconnect();
   }, [product.id]);
@@ -82,171 +79,169 @@ function ProductPage() {
 
   return (
     <div>
-      <section className="mx-auto grid max-w-6xl gap-10 px-5 py-10 md:grid-cols-[1.1fr_0.9fr] md:gap-16 md:px-8 md:py-16">
-        <div className="space-y-4">
-          <div className="overflow-hidden rounded-[2rem] border border-line bg-[#f0e7dc] p-2 shadow-[0_25px_60px_rgba(17,15,12,0.08)]">
+      <section className="mx-auto grid max-w-7xl gap-10 px-5 py-8 md:grid-cols-[1.08fr_0.92fr] md:gap-16 md:px-8 md:py-12 lg:gap-20">
+        <div className="md:sticky md:top-24 md:self-start">
+          <div className="overflow-hidden bg-surface">
             <img
               src={product.image}
               alt={product.name}
-              className="aspect-[4/5] w-full rounded-[1.5rem] object-cover"
+              className="aspect-[4/5] w-full object-cover"
             />
           </div>
+          <p className="mt-3 text-center font-mono text-[9px] uppercase tracking-[0.16em] text-muted">
+            LOMMA · Kolekcja 01 · {product.index}
+          </p>
         </div>
 
-        <div className="md:sticky md:top-28 md:self-start">
-          <p className="font-mono text-2xs uppercase tracking-caps text-accent">
+        <div className="md:pt-2">
+          <p className="font-sans text-[11px] uppercase tracking-[0.1em] text-muted">
             {product.location} · <ClockTime time={product.time} />
           </p>
-          <h1 className="mt-3 font-display text-4xl font-medium tracking-display md:text-5xl">
+          <h1 className="mt-4 max-w-xl font-display text-5xl font-medium leading-[0.94] tracking-display text-fg md:text-6xl">
             {product.name}
           </h1>
-          <div className="mt-5 flex items-end justify-between gap-4 border-b border-line pb-5">
-            <p className="font-mono text-xl tabular-nums text-fg">
-              {formatPrice(product.price)}
-            </p>
-            <p className="font-mono text-2xs uppercase tracking-caps text-accent">
-              Darmowa dostawa od 199 zł
-            </p>
+
+          <div className="mt-6 border-y border-line py-5">
+            <div className="flex items-baseline justify-between gap-6">
+              <p className="font-display text-3xl font-medium tabular-nums text-fg">
+                {formatPrice(product.price)}
+              </p>
+              <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+                180 g · ~40 h
+              </p>
+            </div>
           </div>
-          <p className="mt-5 max-w-md leading-relaxed text-muted">
+
+          <p className="mt-6 max-w-lg text-base leading-relaxed text-muted">
             {product.description}
           </p>
-          <p className="mt-4 font-mono text-2xs uppercase tracking-caps text-muted">
-            180 g · ~40 h palenia · ręcznie zalewana w Polsce
-          </p>
 
-          <div ref={actionsRef} className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div ref={actionsRef} className="mt-8 grid gap-3 sm:grid-cols-[auto_1fr]">
             <QtySelector value={qty} onChange={setQty} />
-            <Button type="button" size="lg" className="min-w-0 flex-1 rounded-full" onClick={addProduct}>
+            <Button type="button" size="lg" className="w-full" onClick={addProduct}>
               Dodaj do koszyka · {formatPrice(product.price * qty)}
             </Button>
           </div>
 
-          <div className="mt-5 grid grid-cols-1 gap-2 font-mono text-2xs uppercase tracking-caps text-muted sm:grid-cols-3">
-            <div className="rounded-xl border border-line bg-surface/50 px-3 py-3 text-center">Bezpieczna dostawa</div>
-            <div className="rounded-xl border border-line bg-surface/50 px-3 py-3 text-center">Ręcznie zalewana</div>
-            <div className="rounded-xl border border-line bg-surface/50 px-3 py-3 text-center">180 g · ~40 h</div>
+          <div className="mt-7 grid divide-y border-y border-line md:grid-cols-3 md:divide-x md:divide-y-0">
+            <div className="py-4 md:px-4 md:first:pl-0">
+              <p className="font-sans text-xs font-medium text-fg">Wysyłka</p>
+              <p className="mt-1 text-xs leading-relaxed text-muted">W dni robocze, zgodnie z wybraną metodą dostawy.</p>
+            </div>
+            <div className="py-4 md:px-4">
+              <p className="font-sans text-xs font-medium text-fg">Dostawa</p>
+              <p className="mt-1 text-xs leading-relaxed text-muted">Darmowa od 199 zł.</p>
+            </div>
+            <div className="py-4 md:px-4 md:last:pr-0">
+              <p className="font-sans text-xs font-medium text-fg">Zwroty</p>
+              <p className="mt-1 text-xs leading-relaxed text-muted">Szczegóły w zasadach dostawy i zwrotów.</p>
+            </div>
           </div>
 
-          <div className="mt-10 rounded-[1.5rem] border border-line bg-[#f7f1e8] p-5 md:p-6">
-            <p className="font-mono text-2xs uppercase tracking-caps text-accent">
-              Nuty zapachowe
-            </p>
-            <p className="mt-3 font-mono text-sm uppercase tracking-caps text-[#141210]">
-              {product.notes.join(" · ")}
-            </p>
-            <p className="mt-6 font-mono text-2xs uppercase tracking-caps text-muted">
-              Charakter
-            </p>
-            <p className="mt-2 text-sm text-[#2a2723]">{product.character}</p>
+          <div className="mt-10 border-y border-line">
+            <div className="grid gap-6 py-6 sm:grid-cols-2">
+              <div>
+                <p className="font-sans text-xs uppercase tracking-[0.08em] text-muted">Nuty zapachowe</p>
+                <p className="mt-3 font-display text-2xl text-fg">{product.notes.join(" · ")}</p>
+              </div>
+              <div>
+                <p className="font-sans text-xs uppercase tracking-[0.08em] text-muted">Charakter</p>
+                <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">{product.character}</p>
+              </div>
+            </div>
           </div>
 
-          <div className="mt-8 border border-line bg-surface p-5 md:p-6">
-            <p className="font-display text-xl text-fg">W zestawie korzystniej</p>
-            <div className="mt-5 border-t border-line pt-5">
-              <p className="text-sm text-fg">Dwa zapachy</p>
-              <p className="mt-1 text-xs text-muted">
-                {product.name} + drugi · {formatPrice(169)} · oszczędzasz{" "}
-                {formatPrice(9)}
-              </p>
-              <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-                <Select
-                  value={bundlePartner}
-                  onValueChange={(value) =>
-                    setBundlePartner(value as ProductId)
-                  }
-                >
-                  <SelectTrigger aria-label="Wybierz drugi zapach">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {others.map((p) => (
-                      <SelectItem key={p.id} value={p.id}>
-                        {p.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+          <div className="mt-8 border-b border-line pb-8">
+            <div className="grid gap-4 sm:grid-cols-2">
+              {PRODUCT_FACTS.map((fact) => (
+                <div key={fact.label} className="flex justify-between gap-4 border-t border-line pt-3 text-sm">
+                  <span className="text-muted">{fact.label}</span>
+                  <span className="text-right text-fg">{fact.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-8 border-b border-line pb-8">
+            <h2 className="font-display text-2xl text-fg">W zestawie korzystniej</h2>
+            <div className="mt-5 flex flex-col gap-4 border-t border-line pt-5">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-sm text-fg">Dwa zapachy · {formatPrice(169)}</p>
+                  <p className="mt-1 text-xs text-muted">Oszczędzasz {formatPrice(9)}.</p>
+                </div>
+                <div className="flex gap-2">
+                  <Select value={bundlePartner} onValueChange={(value) => setBundlePartner(value as ProductId)}>
+                    <SelectTrigger aria-label="Wybierz drugi zapach" className="min-w-48">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {others.map((p) => (
+                        <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => {
+                      addMany([product.id, bundlePartner]);
+                      toast("Dodano zestaw do koszyka", {
+                        action: { label: "Koszyk", onClick: () => setCartOpen(true) },
+                      });
+                    }}
+                  >
+                    Dodaj
+                  </Button>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-3 border-t border-line pt-5 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-sm text-fg">Cała kolekcja · {formatPrice(239)}</p>
+                  <p className="mt-1 text-xs text-muted">3 świece · oszczędzasz {formatPrice(28)} · darmowa dostawa.</p>
+                </div>
                 <Button
                   type="button"
                   variant="outline"
                   onClick={() => {
-                    addMany([product.id, bundlePartner]);
+                    addMany(["karkonosze", "ogrod", "baltyk"]);
                     toast("Dodano zestaw do koszyka", {
-                      action: {
-                        label: "Koszyk",
-                        onClick: () => setCartOpen(true),
-                      },
+                      action: { label: "Koszyk", onClick: () => setCartOpen(true) },
                     });
                   }}
                 >
-                  Dodaj zestaw
+                  Dodaj
                 </Button>
               </div>
-            </div>
-            <div className="mt-5 flex flex-col gap-3 border-t border-line pt-5 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <p className="text-sm text-fg">Cała kolekcja</p>
-                <p className="mt-1 text-xs text-muted">
-                  Karkonosze + Ogród + Bałtyk · {formatPrice(239)} · oszczędzasz{" "}
-                  {formatPrice(28)} · darmowa dostawa
-                </p>
-              </div>
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => {
-                  addMany(["karkonosze", "ogrod", "baltyk"]);
-                  toast("Dodano zestaw do koszyka", {
-                    action: {
-                      label: "Koszyk",
-                      onClick: () => setCartOpen(true),
-                    },
-                  });
-                }}
-              >
-                Dodaj zestaw
-              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="border-t border-line bg-[#f7f1e8]/30">
-        <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 md:grid-cols-3 md:px-8">
+      <section className="border-t border-line bg-surface/35">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 md:grid-cols-3 md:px-8 md:py-20">
           <div>
-            <h2 className="font-display text-2xl">Szczegóły</h2>
-            <ul className="mt-6">
-              {PRODUCT_FACTS.map((fact) => (
-                <li
-                  key={fact.label}
-                  className="flex items-center justify-between border-t border-line py-3 font-mono text-2xs uppercase tracking-caps last:border-b"
-                >
-                  <span className="text-muted">{fact.label}</span>
-                  <span>{fact.value}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h2 className="font-display text-2xl">Jak pachnie?</h2>
-            <ul className="mt-6 space-y-4">
+            <h2 className="font-display text-3xl text-fg">Jak pachnie?</h2>
+            <ul className="mt-7 space-y-5">
               {product.howItSmells.map((note) => (
                 <li key={note.name}>
-                  <p className="font-mono text-2xs uppercase tracking-caps text-accent">
-                    {note.name}
-                  </p>
-                  <p className="mt-1 text-sm text-muted">{note.text}</p>
+                  <p className="font-sans text-[11px] uppercase tracking-[0.1em] text-muted">{note.name}</p>
+                  <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted">{note.text}</p>
                 </li>
               ))}
             </ul>
           </div>
           <div>
-            <h2 className="font-display text-2xl">Jak palić?</h2>
-            <p className="mt-6 text-sm leading-relaxed text-muted">
-              Pamiętaj, aby przy pierwszym paleniu pozwolić woskowi stopić się
-              równomiernie do krawędzi. Zawsze przycinaj knot do 5 mm przed
-              kolejnym użyciem.
+            <h2 className="font-display text-3xl text-fg">Jak palić?</h2>
+            <p className="mt-7 max-w-sm text-sm leading-relaxed text-muted">
+              Przy pierwszym paleniu pozwól woskowi stopić się równomiernie do krawędzi. Przed kolejnym użyciem przytnij knot do 5 mm.
+            </p>
+          </div>
+          <div>
+            <h2 className="font-display text-3xl text-fg">Świeca do Twojego wnętrza</h2>
+            <p className="mt-7 max-w-sm text-sm leading-relaxed text-muted">
+              Prosta forma, naturalne kolory i zapach, który ma być częścią przestrzeni — nie jej centrum.
             </p>
           </div>
         </div>
@@ -254,29 +249,26 @@ function ProductPage() {
 
       <ComparisonTable />
 
-      <section className="border-t border-line px-5 py-16 md:px-8">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="font-display text-3xl">Pozostałe chwile</h2>
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
-            {others.map((p) => (
-              <ProductCard key={p.id} product={p} />
-            ))}
+      <section className="border-t border-line px-5 py-16 md:px-8 md:py-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex items-end justify-between gap-6">
+            <h2 className="font-display text-3xl md:text-4xl">Pozostałe chwile</h2>
+            <span className="hidden font-mono text-[10px] uppercase tracking-[0.12em] text-muted sm:inline">Kolekcja 01</span>
+          </div>
+          <div className="mt-8 grid gap-x-8 md:grid-cols-2">
+            {others.map((p) => <ProductCard key={p.id} product={p} />)}
           </div>
         </div>
       </section>
 
       {sticky ? (
-        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-elevated/95 px-4 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 shadow-[0_-12px_30px_rgba(41,41,37,0.08)] backdrop-blur-md md:hidden">
+        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-bg/95 px-4 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 backdrop-blur-md md:hidden">
           <div className="flex items-center justify-between gap-3">
             <div className="min-w-0">
               <p className="truncate text-sm">{product.name}</p>
-              <p className="font-mono text-2xs tabular-nums text-muted">
-                {formatPrice(product.price)}
-              </p>
+              <p className="font-mono text-2xs tabular-nums text-muted">{formatPrice(product.price)}</p>
             </div>
-            <Button type="button" size="sm" onClick={addProduct}>
-              Dodaj do koszyka
-            </Button>
+            <Button type="button" size="sm" onClick={addProduct}>Dodaj do koszyka</Button>
           </div>
         </div>
       ) : null}
