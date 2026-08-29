@@ -65,7 +65,7 @@ export function ScentChapter({
           </div>
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            <Button asChild size="lg">
+            <Button asChild size="lg" className="rounded-full px-8 font-semibold">
               <Link to="/zapach/$id" params={{ id: product.id }}>
                 Poznaj zapach
                 <ArrowUpRight className="size-4" strokeWidth={1.5} />
@@ -73,7 +73,7 @@ export function ScentChapter({
             </Button>
             <button
               onClick={handleAddToCart}
-              className="inline-flex h-14 items-center gap-2 border border-line px-6 font-mono text-2xs uppercase tracking-caps text-fg hover:bg-surface hover:border-line-strong transition-colors"
+              className="inline-flex h-14 items-center gap-2 rounded-full border border-line bg-surface px-6 font-mono text-2xs font-semibold uppercase tracking-caps text-fg hover:bg-elevated hover:border-accent transition-colors"
             >
               <ShoppingBag className="size-4" strokeWidth={1.5} />
               <span>Dodaj ({product.price} zł)</span>

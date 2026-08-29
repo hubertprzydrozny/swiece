@@ -14,6 +14,6 @@ export const useUiStore = create<UiState>((set) => ({
   setCartOpen: (cartOpen) => set({ cartOpen }),
   lastAdded: null,
   setLastAdded: (lastAdded) => set({ lastAdded }),
-  theme: "dark",
+  theme: "light",
   setTheme: (theme) => set({ theme }),
 }));

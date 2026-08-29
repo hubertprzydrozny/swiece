@@ -1,5 +1,4 @@
 import { Link } from "@tanstack/react-router";
-import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Footer() {
   return (
@@ -16,9 +15,6 @@ export function Footer() {
             Zapachy do domu inspirowane miejscami, godzinami i atmosferą, do
             których chce się wracać.
           </p>
-          <div className="mt-8">
-            <ThemeToggle />
-          </div>
         </div>
         <div className="grid gap-8 sm:grid-cols-3">
           <div className="flex flex-col gap-3">
