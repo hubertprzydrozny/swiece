@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { ClockTime } from "@/components/clock";
 import { ProductCard } from "@/components/product-card";
 import { QtySelector } from "@/components/qty-selector";
+import { ComparisonTable } from "@/components/comparison-table";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -249,6 +250,8 @@ function ProductPage() {
           </div>
         </div>
       </section>
+
+      <ComparisonTable />
 
       <section className="border-t border-line px-5 py-16 md:px-8">
         <div className="mx-auto max-w-6xl">

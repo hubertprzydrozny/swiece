@@ -1,10 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowDown, Flame, Scissors, Shield } from "lucide-react";
+import { ArrowDown, Flame, Scissors, Shield, Sparkles, Check, Truck } from "lucide-react";
 import { FaqList } from "@/components/faq-list";
 import { ProductCard } from "@/components/product-card";
 import { ScentChapter } from "@/components/scent-chapter";
+import { ComparisonTable } from "@/components/comparison-table";
 import { Button } from "@/components/ui/button";
 import { PRODUCT_LIST } from "@/lib/products";
+import { useCartStore } from "@/store/cart";
+import { useUiStore } from "@/store/ui";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -36,7 +39,9 @@ function Home() {
           />
         ))}
       </section>
+      <BundleOffer />
       <CollectionPreview />
+      <ComparisonTable />
       <Philosophy />
       <Atelier />
       <HowToBurn />
@@ -170,6 +175,70 @@ function QualityStrip() {
             <p className="mt-2 text-sm text-muted">{item.d}</p>
           </div>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function BundleOffer() {
+  const addMany = useCartStore((s) => s.addMany);
+  const { setCartOpen, setLastAdded } = useUiStore();
+
+  const handleAddBundle = () => {
+    addMany(["ogrod", "karkonosze", "baltyk"]);
+    setLastAdded("Zestaw Odkrywcy (3 świece)");
+    setCartOpen(true);
+  };
+
+  return (
+    <section className="border-t border-line bg-surface/40 py-16 md:py-24 px-5 md:px-8">
+      <div className="mx-auto max-w-5xl rounded-xl border border-line bg-elevated p-6 md:p-10 shadow-lg">
+        <div className="grid gap-8 lg:grid-cols-2 items-center">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/20 text-accent font-mono text-2xs uppercase tracking-caps mb-4">
+              <Sparkles className="size-3.5" />
+              <span>Bestseller · Zestaw Odkrywcy</span>
+            </div>
+            <h2 className="font-display text-3xl md:text-4xl text-fg font-medium leading-tight">
+              Kolekcja 01 — Pełen Zestaw 3 Świec
+            </h2>
+            <p className="mt-3 text-muted text-sm leading-relaxed">
+              Odkryj wszystkie trzy historie zapachowe: Poranek w Ogrodzie (07:15), Wieczór w Karkonoszach (19:42) oraz Wieczór nad Bałtykiem (21:05).
+            </p>
+            <ul className="mt-6 space-y-3 font-mono text-2xs text-fg">
+              <li className="flex items-center gap-2">
+                <Check className="size-4 text-accent" />
+                <span>3x Świeca Sojowa 180g (Poranek, Karkonosze, Bałtyk)</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <Check className="size-4 text-accent" />
+                <span>Darmowa Wysyłka w cenie pakietu</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <Check className="size-4 text-accent" />
+                <span>Oszczędzasz 28 zł w porównaniu do osobnego zakupu</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="bg-bg/80 border border-line p-6 rounded-lg text-center flex flex-col justify-center">
+            <span className="font-mono text-2xs uppercase tracking-caps text-muted">
+              Promocyjna cena zestawu
+            </span>
+            <div className="mt-3 flex items-baseline justify-center gap-3">
+              <span className="font-display text-4xl text-fg font-medium">239 zł</span>
+              <span className="font-mono text-sm text-muted line-through">267 zł</span>
+            </div>
+            <div className="mt-2 inline-flex items-center justify-center gap-1.5 text-accent font-mono text-2xs uppercase tracking-caps">
+              <Truck className="size-4" />
+              <span>Darmowa Dostawa</span>
+            </div>
+
+            <Button onClick={handleAddBundle} size="lg" className="mt-6 w-full">
+              Dodaj Zestaw do Koszyka
+            </Button>
+          </div>
+        </div>
       </div>
     </section>
   );

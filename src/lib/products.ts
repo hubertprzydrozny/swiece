@@ -148,8 +148,13 @@ export const FAQ_ITEMS = [
     q: "Jak intensywne są zapachy?",
     a: "Kompozycje są wyczuwalne, ale spokojne — stworzone do budowania atmosfery, nie do dominowania nad wnętrzem.",
   },
-  {
-    q: "Z czego wykonana jest świeca?",
-    a: "Każda świeca ma 180 g naturalnego wosku sojowego, transparentne szkło i bambusową pokrywkę. Jest ręcznie zalewana w Polsce.",
-  },
 ] as const;
+
+export const TRUST_BADGES = [
+  { title: "Ręcznie zalewane", text: "W małych partiach w Polsce" },
+  { title: "100% Wosk Sojowy", text: "Bez toksyn, benzenu i kopcenia" },
+  { title: "Darmowa Dostawa", text: "Dla zamówień od 199 zł" },
+  { title: "30 Dni na Zwrot", text: "Gwarancja bezpiecznych zakupów" },
+] as const;
+
+

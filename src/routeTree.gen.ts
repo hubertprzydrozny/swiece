@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DostawaRouteImport } from './routes/dostawa'
+import { Route as JakToDzialaRouteImport } from './routes/jak-to-dziala'
 import { Route as KoszykRouteImport } from './routes/koszyk'
 import { Route as PrywatnoscRouteImport } from './routes/prywatnosc'
 import { Route as RegulaminRouteImport } from './routes/regulamin'
@@ -26,6 +27,11 @@ const IndexRoute = IndexRouteImport.update({
 const DostawaRoute = DostawaRouteImport.update({
   id: '/dostawa',
   path: '/dostawa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JakToDzialaRoute = JakToDzialaRouteImport.update({
+  id: '/jak-to-dziala',
+  path: '/jak-to-dziala',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KoszykRoute = KoszykRouteImport.update({
@@ -62,6 +68,7 @@ const ZapachIdRoute = ZapachIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dostawa': typeof DostawaRoute
+  '/jak-to-dziala': typeof JakToDzialaRoute
   '/koszyk': typeof KoszykRoute
   '/prywatnosc': typeof PrywatnoscRoute
   '/regulamin': typeof RegulaminRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dostawa': typeof DostawaRoute
+  '/jak-to-dziala': typeof JakToDzialaRoute
   '/koszyk': typeof KoszykRoute
   '/prywatnosc': typeof PrywatnoscRoute
   '/regulamin': typeof RegulaminRoute
@@ -83,6 +91,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dostawa': typeof DostawaRoute
+  '/jak-to-dziala': typeof JakToDzialaRoute
   '/koszyk': typeof KoszykRoute
   '/prywatnosc': typeof PrywatnoscRoute
   '/regulamin': typeof RegulaminRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dostawa'
+    | '/jak-to-dziala'
     | '/koszyk'
     | '/prywatnosc'
     | '/regulamin'
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/dostawa'
+    | '/jak-to-dziala'
     | '/koszyk'
     | '/prywatnosc'
     | '/regulamin'
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/dostawa'
+    | '/jak-to-dziala'
     | '/koszyk'
     | '/prywatnosc'
     | '/regulamin'
@@ -126,6 +138,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DostawaRoute: typeof DostawaRoute
+  JakToDzialaRoute: typeof JakToDzialaRoute
   KoszykRoute: typeof KoszykRoute
   PrywatnoscRoute: typeof PrywatnoscRoute
   RegulaminRoute: typeof RegulaminRoute
@@ -148,6 +161,13 @@ declare module '@tanstack/react-router' {
       path: '/dostawa'
       fullPath: '/dostawa'
       preLoaderRoute: typeof DostawaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jak-to-dziala': {
+      id: '/jak-to-dziala'
+      path: '/jak-to-dziala'
+      fullPath: '/jak-to-dziala'
+      preLoaderRoute: typeof JakToDzialaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/koszyk': {
@@ -198,6 +218,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DostawaRoute: DostawaRoute,
+  JakToDzialaRoute: JakToDzialaRoute,
   KoszykRoute: KoszykRoute,
   PrywatnoscRoute: PrywatnoscRoute,
   RegulaminRoute: RegulaminRoute,
@@ -208,12 +229,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
-}

@@ -8,6 +8,7 @@ import { useUiStore } from "@/store/ui";
 
 const LINKS = [
   { to: "/sklep", label: "Sklep", hash: undefined as string | undefined },
+  { to: "/jak-to-dziala", label: "Jak to działa", hash: undefined as string | undefined },
   { to: "/", label: "Zapachy", hash: "zapachy" },
   { to: "/", label: "O LOMMA", hash: "o-lomma" },
   { to: "/", label: "FAQ", hash: "faq" },
