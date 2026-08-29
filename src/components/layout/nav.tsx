@@ -36,49 +36,47 @@ export function Nav() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-40">
-      <div className="bg-ink text-center text-paper">
-        <div className="px-4 py-2">
-          <NowMoment />
-        </div>
+    <header className="sticky top-0 z-40 px-3 py-2 md:px-6 md:py-3">
+      <div className="bg-ink text-center text-paper rounded-full max-w-5xl mx-auto mb-2 py-1 px-4 text-xs">
+        <NowMoment />
       </div>
       <nav
         className={cn(
-          "border-b transition-[background-color,border-color] duration-300",
+          "mx-auto max-w-5xl rounded-full border transition-all duration-300 shadow-sm",
           scrolled
-            ? "border-line bg-bg/92 backdrop-blur-md"
-            : "border-transparent bg-bg/40 backdrop-blur-sm",
+            ? "border-line bg-surface/90 backdrop-blur-md shadow-md"
+            : "border-line/60 bg-surface/70 backdrop-blur-sm",
         )}
       >
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 md:h-[4.5rem] md:px-8">
+        <div className="flex h-14 items-center justify-between gap-4 px-4 md:px-6">
           <button
             type="button"
-            className="flex size-11 items-center justify-center md:hidden"
+            className="flex size-10 items-center justify-center rounded-full border border-line md:hidden"
             aria-label={menuOpen ? "Zamknij menu" : "Otwórz menu"}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((v) => !v)}
           >
             {menuOpen ? (
-              <X className="size-5" strokeWidth={1.5} />
+              <X className="size-4" strokeWidth={1.5} />
             ) : (
-              <Menu className="size-5" strokeWidth={1.5} />
+              <Menu className="size-4" strokeWidth={1.5} />
             )}
           </button>
 
           <Link
             to="/"
-            className="font-sans text-lg font-medium tracking-brand uppercase"
+            className="font-sans text-lg font-semibold tracking-brand uppercase text-fg px-2"
           >
             Lomma
           </Link>
 
-          <div className="hidden items-center gap-8 md:flex">
+          <div className="hidden items-center gap-1 md:flex bg-bg/50 p-1 rounded-full border border-line/40">
             {LINKS.map((link) => (
               <Link
                 key={link.label}
                 to={link.to}
                 hash={link.hash}
-                className="font-mono text-2xs uppercase tracking-caps text-muted transition-colors hover:text-fg"
+                className="font-mono text-2xs uppercase tracking-caps text-muted px-4 py-1.5 rounded-full transition-colors hover:bg-surface hover:text-fg"
               >
                 {link.label}
               </Link>
@@ -87,12 +85,15 @@ export function Nav() {
 
           <button
             type="button"
-            className="flex h-11 items-center gap-2 border border-line-strong px-3 font-mono text-2xs uppercase tracking-caps transition-colors hover:border-fg hover:bg-fg hover:text-ink"
+            className="flex h-9 items-center gap-2 rounded-full border border-line bg-elevated px-4 font-mono text-2xs uppercase tracking-caps text-fg transition-all hover:bg-accent hover:text-ink hover:border-accent"
             onClick={() => setCartOpen(true)}
             aria-label={`Koszyk, ${count} produktów`}
           >
-            <ShoppingBag className="size-4" strokeWidth={1.5} />
-            <span className="tabular-nums">{count}</span>
+            <ShoppingBag className="size-3.5" strokeWidth={1.5} />
+            <span>Koszyk</span>
+            <span className="ml-1 rounded-full bg-accent/20 px-1.5 py-0.5 text-2xs font-bold text-accent group-hover:bg-ink group-hover:text-paper">
+              {count}
+            </span>
           </button>
         </div>
 

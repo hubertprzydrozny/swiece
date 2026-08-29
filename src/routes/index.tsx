@@ -114,18 +114,18 @@ function QuickProducts() {
   };
 
   return (
-    <section className="border-b border-line bg-bg py-10" aria-label="Zapachy LOMMA">
+    <section className="border-b border-line bg-bg py-16" aria-label="Zapachy LOMMA">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-4 mb-8">
           <div>
-            <span className="font-mono text-2xs uppercase tracking-caps text-accent block">
+            <span className="inline-flex items-center px-3.5 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-2xs uppercase tracking-brand text-accent font-medium mb-3">
               Pierwsza Kolekcja
             </span>
-            <h2 className="font-display text-2xl md:text-3xl text-fg font-medium">
+            <h2 className="font-display text-3xl md:text-4xl text-fg font-medium">
               Trzy zapachy. Wybierz swój rytuał.
             </h2>
           </div>
-          <span className="font-mono text-xs text-muted hidden md:inline">
+          <span className="font-mono text-xs text-muted">
             180g · ~40h palenia · Wosk sojowy
           </span>
         </div>
@@ -134,21 +134,21 @@ function QuickProducts() {
           {PRODUCT_LIST.map((product) => (
             <div
               key={product.id}
-              className="group flex flex-col justify-between border border-line bg-surface p-4 transition-all duration-300 hover:border-line-strong hover:shadow-md"
+              className="group flex flex-col justify-between rounded-2xl border border-line bg-surface p-5 transition-all duration-300 hover:border-accent/40 hover:-translate-y-1 hover:shadow-lg"
             >
               <Link to={`/zapach/${product.id}`} className="block">
-                <div className="aspect-4/5 overflow-hidden border border-line bg-elevated mb-4">
+                <div className="aspect-4/5 rounded-xl overflow-hidden border border-line/60 bg-elevated mb-4">
                   <img
                     src={product.image}
                     alt={product.name}
                     className="image-zoom h-full w-full object-cover"
                   />
                 </div>
-                <div className="flex items-center justify-between mb-1">
-                  <span className="font-mono text-2xs uppercase tracking-caps text-accent font-medium">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="inline-flex items-center px-3 py-0.5 rounded-full bg-accent/10 border border-accent/20 font-mono text-2xs uppercase tracking-caps text-accent font-medium">
                     {product.location} · {product.time}
                   </span>
-                  <span className="font-mono text-xs font-medium text-fg">
+                  <span className="font-mono text-xs font-semibold text-fg">
                     {product.price} zł
                   </span>
                 </div>
@@ -160,7 +160,7 @@ function QuickProducts() {
                 </p>
               </Link>
 
-              <div className="mt-6 pt-4 border-t border-line flex items-center justify-between gap-3">
+              <div className="mt-6 pt-4 border-t border-line/60 flex items-center justify-between gap-3">
                 <Link
                   to={`/zapach/${product.id}`}
                   className="font-mono text-2xs uppercase tracking-caps text-muted hover:text-fg transition-colors"
@@ -170,7 +170,7 @@ function QuickProducts() {
                 <Button
                   size="sm"
                   onClick={(e) => handleAddToCart(product, e)}
-                  className="px-4 py-2 text-xs font-medium"
+                  className="rounded-full px-5 py-2 text-xs font-medium"
                 >
                   Dodaj
                 </Button>
@@ -186,10 +186,10 @@ function QuickProducts() {
 function MomentLine() {
   return (
     <div
-      className="border-y border-line bg-surface"
+      className="border-y border-line bg-surface/50"
       aria-label="Trzy elementy kolekcji"
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-center gap-6 px-5 py-5 font-mono text-2xs uppercase tracking-caps text-muted md:gap-10">
+      <div className="mx-auto flex max-w-6xl items-center justify-center gap-6 px-5 py-4 font-mono text-2xs uppercase tracking-caps text-muted md:gap-10">
         <span>Miejsce</span>
         <i aria-hidden="true" className="text-accent not-italic">
           ·
@@ -211,12 +211,17 @@ function QualityStrip() {
     { n: "03", t: "Około 40 h palenia", d: "180 g zapachu do domu" },
   ];
   return (
-    <section className="border-b border-line">
-      <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 md:grid-cols-3 md:px-8 md:py-16">
+    <section className="border-b border-line py-16 bg-surface/20">
+      <div className="mx-auto grid max-w-6xl gap-6 px-5 md:grid-cols-3 md:px-8">
         {items.map((item) => (
-          <div key={item.n}>
-            <p className="font-mono text-2xs text-accent">{item.n}</p>
-            <h2 className="mt-3 font-display text-2xl font-medium tracking-display">
+          <div
+            key={item.n}
+            className="rounded-2xl border border-line bg-surface p-6 shadow-sm transition-all duration-300 hover:border-accent/40 hover:-translate-y-1"
+          >
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-accent/10 border border-accent/20 font-mono text-2xs text-accent font-semibold mb-3">
+              {item.n}
+            </span>
+            <h2 className="font-display text-2xl font-medium tracking-display text-fg">
               {item.t}
             </h2>
             <p className="mt-2 text-sm text-muted">{item.d}</p>
@@ -238,11 +243,11 @@ function BundleOffer() {
   };
 
   return (
-    <section className="border-t border-line bg-surface/40 py-16 md:py-24 px-5 md:px-8">
-      <div className="mx-auto max-w-5xl rounded-xl border border-line bg-elevated p-6 md:p-10 shadow-lg">
+    <section className="border-t border-line bg-surface/30 py-16 md:py-24 px-5 md:px-8">
+      <div className="mx-auto max-w-5xl rounded-2xl border border-line bg-surface p-8 md:p-12 shadow-xl hover:border-accent/40 transition-all duration-300">
         <div className="grid gap-8 lg:grid-cols-2 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/20 text-accent font-mono text-2xs uppercase tracking-caps mb-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-accent/15 border border-accent/30 text-accent font-mono text-2xs uppercase tracking-brand font-medium mb-4">
               <Sparkles className="size-3.5" />
               <span>Bestseller · Zestaw Odkrywcy</span>
             </div>
@@ -254,34 +259,40 @@ function BundleOffer() {
             </p>
             <ul className="mt-6 space-y-3 font-mono text-2xs text-fg">
               <li className="flex items-center gap-2">
-                <Check className="size-4 text-accent" />
+                <span className="p-1 rounded-full bg-accent/20 text-accent">
+                  <Check className="size-3.5" />
+                </span>
                 <span>3x Świeca Sojowa 180g (Poranek, Karkonosze, Bałtyk)</span>
               </li>
               <li className="flex items-center gap-2">
-                <Check className="size-4 text-accent" />
+                <span className="p-1 rounded-full bg-accent/20 text-accent">
+                  <Check className="size-3.5" />
+                </span>
                 <span>Darmowa Wysyłka w cenie pakietu</span>
               </li>
               <li className="flex items-center gap-2">
-                <Check className="size-4 text-accent" />
+                <span className="p-1 rounded-full bg-accent/20 text-accent">
+                  <Check className="size-3.5" />
+                </span>
                 <span>Oszczędzasz 28 zł w porównaniu do osobnego zakupu</span>
               </li>
             </ul>
           </div>
 
-          <div className="bg-bg/80 border border-line p-6 rounded-lg text-center flex flex-col justify-center">
+          <div className="bg-elevated border border-line p-8 rounded-xl text-center flex flex-col justify-center">
             <span className="font-mono text-2xs uppercase tracking-caps text-muted">
               Promocyjna cena zestawu
             </span>
             <div className="mt-3 flex items-baseline justify-center gap-3">
-              <span className="font-display text-4xl text-fg font-medium">239 zł</span>
-              <span className="font-mono text-sm text-muted line-through">267 zł</span>
+              <span className="font-display text-5xl text-fg font-semibold">239 zł</span>
+              <span className="font-mono text-base text-muted line-through">267 zł</span>
             </div>
-            <div className="mt-2 inline-flex items-center justify-center gap-1.5 text-accent font-mono text-2xs uppercase tracking-caps">
+            <div className="mt-2 inline-flex items-center justify-center gap-1.5 text-accent font-mono text-2xs uppercase tracking-caps font-medium">
               <Truck className="size-4" />
               <span>Darmowa Dostawa</span>
             </div>
 
-            <Button onClick={handleAddBundle} size="lg" className="mt-6 w-full">
+            <Button onClick={handleAddBundle} size="lg" className="mt-6 w-full rounded-full py-4 text-sm font-semibold">
               Dodaj Zestaw do Koszyka
             </Button>
           </div>
