@@ -47,7 +47,7 @@ export function ProductCard({ product }: { product: Product }) {
             {product.name}
           </h3>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
-            {product.description}
+            {product.shortDescription}
           </p>
           <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
             {product.notes.join(" · ")}

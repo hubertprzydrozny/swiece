@@ -204,7 +204,7 @@ function ProductPage() {
               <div className="flex flex-col gap-3 border-t border-line pt-5 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <p className="text-sm text-fg">Cała kolekcja · {formatPrice(BUNDLE_PRICES.three)}</p>
-                  <p className="mt-1 text-xs text-muted">3 świece · oszczędzasz {formatPrice(BUNDLE_PRICES.one * 3 - BUNDLE_PRICES.three)} · darmowa dostawa.</p>
+                  <p className="mt-1 text-xs text-muted">{COLLECTION_IDS.length} świece · oszczędzasz {formatPrice(BUNDLE_PRICES.one * COLLECTION_IDS.length - BUNDLE_PRICES.three)} · darmowa dostawa.</p>
                 </div>
                 <Button
                   type="button"
@@ -260,7 +260,7 @@ function ProductPage() {
             <h2 className="font-display text-3xl md:text-4xl">Pozostałe chwile</h2>
             <span className="hidden font-mono text-[10px] uppercase tracking-[0.12em] text-muted sm:inline">Kolekcja 01</span>
           </div>
-          <div className="mt-8 grid gap-x-8 md:grid-cols-2">
+          <div className="mt-8 grid gap-x-8 md:grid-cols-2 lg:grid-cols-3">
             {others.map((p) => <ProductCard key={p.id} product={p} />)}
           </div>
         </div>

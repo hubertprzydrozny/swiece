@@ -7,9 +7,9 @@ function pad(n: number) {
 
 function hourLabel(hour: number) {
   if (hour >= 5 && hour < 11) return "Poranek w Ogrodzie";
-  if (hour >= 18 && hour < 23) return "Wieczór w Karkonoszach";
-  if (hour >= 23 || hour < 5) return "Wieczór nad Bałtykiem";
-  return "Spokojny rytuał codzienności";
+  if (hour >= 12 && hour < 17) return "Popołudnie na Mazurach";
+  if (hour >= 20 && hour < 23) return "Zachód nad Bałtykiem";
+  return "Wieczór w Karkonoszach";
 }
 
 export function NowMoment() {

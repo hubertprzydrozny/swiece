@@ -96,7 +96,7 @@ function JakToDzialaComponent() {
             Odkryj nasze zapachy
           </h2>
           <p className="text-muted text-sm mb-8">
-            Trzy wyjątkowe kompozycje inspirowane miejscami i czasem. Wybierz swój ulubiony zapach lub zamów pełną Kolekcję 01 w darmowej dostawie.
+            Cztery wyjątkowe kompozycje inspirowane miejscami i czasem. Wybierz swój ulubiony zapach lub zamów pełną Kolekcję 01 w darmowej dostawie.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button asChild size="lg">

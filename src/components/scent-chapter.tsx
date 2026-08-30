@@ -46,7 +46,7 @@ export function ScentChapter({
           </h2>
 
           <p className="mt-6 max-w-md text-base leading-relaxed text-muted">
-            {product.description}
+            {product.shortDescription}
           </p>
 
           <div className="mt-8 pt-6 border-t border-line">

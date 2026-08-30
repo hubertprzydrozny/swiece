@@ -51,7 +51,7 @@ export function Nav() {
             <div className="justify-self-start">
               <button
                 type="button"
-                className="inline-flex size-10 items-center justify-center border border-line bg-transparent text-fg transition-colors hover:border-fg md:hidden"
+                className="inline-flex size-10 items-center justify-center bg-transparent text-fg transition-colors hover:text-accent md:hidden"
                 aria-label={menuOpen ? "Zamknij menu" : "Otwórz menu"}
                 aria-expanded={menuOpen}
                 onClick={() => setMenuOpen((v) => !v)}

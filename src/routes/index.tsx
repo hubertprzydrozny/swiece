@@ -55,7 +55,7 @@ function Home() {
 
 function Hero() {
   return (
-    <section className="relative isolate min-h-[78svh] overflow-hidden bg-hero-dark">
+    <section className="relative isolate min-h-[80svh] overflow-hidden bg-hero-dark md:min-h-[86svh]">
       <video
         className="absolute inset-0 h-full w-full object-cover opacity-70"
         autoPlay
@@ -69,8 +69,8 @@ function Hero() {
       </video>
       <div className="absolute inset-0 bg-hero-dark/55" />
       <div className="absolute inset-0 bg-gradient-to-r from-hero-dark/90 via-hero-dark/50 to-hero-dark/25" />
-      <div className="absolute inset-0 bg-gradient-to-t from-hero-dark via-hero-dark/40 to-transparent" />
-      <div className="relative z-10 mx-auto flex min-h-[78svh] max-w-6xl flex-col justify-end px-5 pb-12 pt-28 md:px-8 md:pb-14">
+      <div className="absolute inset-0 bg-gradient-to-t from-hero-dark via-hero-dark/30 to-transparent" />
+      <div className="relative z-10 mx-auto flex min-h-[80svh] max-w-6xl flex-col justify-center px-5 pb-16 pt-28 md:min-h-[86svh] md:px-8">
         <p className="reveal font-mono text-[10px] uppercase tracking-[0.28em] text-paper/80 md:text-2xs">
           Kolekcja 01
         </p>
@@ -79,13 +79,18 @@ function Hero() {
           <br />
           <span className="italic text-sage-tint">Zachowasz jej zapach.</span>
         </h1>
-        <div className="reveal reveal-delay-2 mt-8 flex flex-wrap items-center gap-3">
+        <p className="reveal reveal-delay-2 mt-6 max-w-xl text-base leading-relaxed text-paper/70 md:text-lg">
+          Zapachy do domu inspirowane miejscami, godzinami i atmosferą.
+          Cztery chwile dnia zamknięte w naturalnym wosku sojowym — ręcznie
+          zalewane w Polsce.
+        </p>
+        <div className="reveal reveal-delay-3 mt-8 flex flex-wrap items-center gap-3">
           <Button asChild size="lg" className="bg-paper text-hero-dark hover:bg-sage-tint hover:text-hero-dark">
             <Link to="/sklep">Odkryj zapachy</Link>
           </Button>
           <a
             href="#zapachy"
-            className="inline-flex h-14 items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-paper/80 transition-colors hover:text-paper md:text-2xs"
+            className="inline-flex h-14 items-center gap-2 border border-paper/30 px-6 font-mono text-[10px] uppercase tracking-[0.2em] text-paper/80 transition-colors hover:border-paper/70 hover:text-paper md:text-2xs"
           >
             Zobacz kolekcję
             <ArrowDown className="size-4" strokeWidth={1.5} />
@@ -106,7 +111,7 @@ function QuickProducts() {
               Pierwsza Kolekcja
             </span>
             <h2 className="font-display text-4xl md:text-5xl text-fg font-medium">
-              Trzy zapachy.<br />Wybierz swój rytuał.
+              Cztery zapachy.<br />Wybierz swój rytuał.
             </h2>
           </div>
           <span className="font-mono text-xs text-muted">
@@ -114,7 +119,7 @@ function QuickProducts() {
           </span>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {PRODUCT_LIST.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -194,15 +199,15 @@ function BundleOffer() {
               Bestseller · Zestaw Odkrywcy
             </p>
             <h2 className="mt-4 font-display text-3xl font-medium leading-tight text-fg md:text-4xl">
-              Kolekcja 01 — pełny zestaw 3 świec
+              Kolekcja 01 — pełny zestaw 4 świec
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-muted">
-              Odkryj wszystkie trzy historie zapachowe: Poranek w Ogrodzie (07:15), Wieczór w Karkonoszach (19:42) oraz Wieczór nad Bałtykiem (21:05).
+              Odkryj wszystkie cztery historie zapachowe: Poranek w Ogrodzie (07:18), Popołudnie na Mazurach (15:42), Zachód nad Bałtykiem (20:46) oraz Wieczór w Karkonoszach (21:37).
             </p>
             <ul className="mt-6 space-y-3 font-mono text-2xs text-fg">
               <li className="flex items-center gap-2">
                 <Check className="size-4 shrink-0 text-accent" strokeWidth={1.5} />
-                <span>3x świeca sojowa 180g (Poranek, Karkonosze, Bałtyk)</span>
+                <span>4x świeca sojowa 180g (Poranek, Karkonosze, Bałtyk, Mazury)</span>
               </li>
               <li className="flex items-center gap-2">
                 <Check className="size-4 shrink-0 text-accent" strokeWidth={1.5} />

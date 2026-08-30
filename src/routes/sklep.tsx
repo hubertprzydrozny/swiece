@@ -33,7 +33,7 @@ function ShopPage() {
           Zapisane chwile.
         </h1>
         <p className="mt-5 max-w-xl text-base leading-relaxed text-muted md:text-lg">
-          Trzy miejsca. Trzy pory dnia. Zapachy, które mają zostać z Tobą dłużej niż jeden wieczór.
+          Cztery miejsca. Cztery pory dnia. Zapachy, które mają zostać z Tobą dłużej niż jeden wieczór.
         </p>
       </header>
 
@@ -43,7 +43,7 @@ function ShopPage() {
         <span>Darmowa dostawa od 199 zł</span>
       </div>
 
-      <div className="mt-10 grid gap-x-8 md:grid-cols-3">
+      <div className="mt-10 grid gap-x-8 gap-y-4 md:grid-cols-2 lg:grid-cols-4">
         {PRODUCT_LIST.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
@@ -54,10 +54,10 @@ function ShopPage() {
           <div>
             <p className="font-sans text-[11px] uppercase tracking-[0.12em] text-muted">Cała kolekcja</p>
             <h2 className="mt-3 font-display text-4xl font-medium tracking-display text-fg">
-              Trzy chwile. Jeden zestaw.
+              Cztery chwile. Jeden zestaw.
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
-              Karkonosze, Ogród i Bałtyk razem — {formatPrice(BUNDLE_PRICES.three)} zamiast{" "}
+              Ogród, Mazury, Bałtyk i Karkonosze razem — {formatPrice(BUNDLE_PRICES.three)} zamiast{" "}
               <span className="line-through">{formatPrice(BUNDLE_PRICES.one * COLLECTION_IDS.length)}</span>. Darmowa dostawa w zestawie.
             </p>
           </div>
