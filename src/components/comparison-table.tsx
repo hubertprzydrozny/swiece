@@ -49,7 +49,7 @@ export function ComparisonTable() {
           </p>
         </div>
 
-        <div className="overflow-x-auto rounded-lg border border-line bg-bg">
+        <div className="overflow-x-auto border border-line bg-bg">
           <table className="w-full text-left text-sm border-collapse">
             <thead>
               <tr className="border-b border-line bg-elevated">
@@ -64,21 +64,17 @@ export function ComparisonTable() {
             </thead>
             <tbody className="divide-y divide-line">
               {comparisonData.map((row, idx) => (
-                <tr key={idx} className="hover:bg-surface/50 transition-colors">
+                <tr key={idx}>
                   <td className="py-4 px-4 font-medium text-fg">{row.feature}</td>
-                  <td className="py-4 px-4 text-fg bg-accent/5">
+                  <td className="py-4 px-4 text-fg">
                     <div className="flex items-center gap-2">
-                      <span className="p-1 rounded-full bg-accent/20 text-accent shrink-0">
-                        <Check className="size-4" />
-                      </span>
+                      <Check className="size-4 shrink-0 text-accent" strokeWidth={1.5} />
                       <span>{row.lomma}</span>
                     </div>
                   </td>
                   <td className="py-4 px-4 text-muted">
                     <div className="flex items-center gap-2">
-                      <span className="p-1 rounded-full bg-danger/10 text-danger shrink-0">
-                        <X className="size-4" />
-                      </span>
+                      <X className="size-4 shrink-0 text-danger" strokeWidth={1.5} />
                       <span>{row.others}</span>
                     </div>
                   </td>

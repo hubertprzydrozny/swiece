@@ -44,7 +44,7 @@ export function Nav() {
         <nav
           className={cn(
             "mx-auto max-w-7xl px-5 transition-shadow duration-300 md:px-8",
-            scrolled && "shadow-[0_10px_30px_rgba(41,41,37,0.04)]",
+            scrolled && "shadow-[0_10px_30px_rgba(39,38,31,0.04)]",
           )}
         >
           <div className="grid min-h-16 grid-cols-[1fr_auto_1fr] items-center gap-4">

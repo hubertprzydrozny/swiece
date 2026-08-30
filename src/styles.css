@@ -2,20 +2,22 @@
 @import "tw-animate-css";
 
 @theme {
-  --color-bg: #f4efe5;
-  --color-surface: #eadfce;
-  --color-elevated: #fffaf2;
-  --color-fg: #292925;
-  --color-muted: #746f66;
-  --color-accent: #6e7a55;
-  --color-paper: #f4efe5;
-  --color-ink: #fffaf2;
-  --color-line: rgb(41 41 37 / 0.14);
-  --color-line-strong: rgb(41 41 37 / 0.28);
+  --color-bg: #f8f8f5;
+  --color-surface: #e7e6e1;
+  --color-elevated: #f3f2ee;
+  --color-fg: #27261f;
+  --color-muted: #26251e99;
+  --color-accent: #27261f;
+  --color-paper: #f8f8f5;
+  --color-ink: #f8f8f5;
+  --color-line: #d4d4ce;
+  --color-line-strong: color-mix(in srgb, #27261f 28%, #d4d4ce);
   --color-danger: #a6552f;
+  --color-sage-tint: #e7e6e1;
+  --color-hero-dark: #27261f;
 
-  --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Markazi Text", Georgia, "Times New Roman", serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
 
   --text-2xs: 0.6875rem;
@@ -58,7 +60,7 @@
 
   body {
     background: var(--color-bg);
-    color: var(--color-fg);
+    color: var(--color-muted);
     font-family: var(--font-sans);
     font-weight: 400;
     line-height: 1.55;
@@ -67,6 +69,7 @@
   h1,
   h2,
   h3 {
+    color: var(--color-fg);
     text-wrap: balance;
   }
 

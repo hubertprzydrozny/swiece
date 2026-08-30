@@ -97,6 +97,7 @@ export const PRODUCT_LIST: Product[] = [
 export const FREE_SHIPPING_THRESHOLD = 199;
 export const SHIPPING_COST = 13.99;
 export const BUNDLE_PRICES = { one: 89, two: 169, three: 239 } as const;
+export const COLLECTION_IDS: ProductId[] = ["ogrod", "karkonosze", "baltyk"];
 
 export function isProductId(value: string): value is ProductId {
   return value in PRODUCTS;

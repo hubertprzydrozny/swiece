@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ComparisonTable } from "@/components/comparison-table";
+import { Button } from "@/components/ui/button";
 import { Flame, Scissors, Clock, Recycle, ArrowRight, ShieldCheck } from "lucide-react";
 
 export const Route = createFileRoute("/jak-to-dziala")({
@@ -58,16 +59,14 @@ function JakToDzialaComponent() {
               return (
                 <div
                   key={step.num}
-                  className="p-8 rounded-lg border border-line bg-surface/40 flex flex-col justify-between hover:border-line-strong transition-colors"
+                  className="flex flex-col justify-between border-t border-line pt-6"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-6">
                       <span className="font-mono text-xl text-accent font-medium">
                         {step.num}
                       </span>
-                      <div className="p-3 rounded-full bg-accent/10 text-accent">
-                        <IconComp className="size-6" />
-                      </div>
+                      <IconComp className="size-6 text-accent" strokeWidth={1.25} />
                     </div>
                     <h3 className="font-display text-2xl text-fg mb-3">
                       {step.title}
@@ -89,24 +88,23 @@ function JakToDzialaComponent() {
       {/* CTA Section */}
       <section className="py-16 md:py-24 text-center px-4 sm:px-6 bg-surface/50 border-t border-line">
         <div className="max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent font-mono text-2xs uppercase tracking-caps mb-4">
-            <ShieldCheck className="size-4" />
-            <span>Gwarancja Satysfakcji</span>
-          </div>
+          <p className="flex items-center justify-center gap-2 font-mono text-2xs uppercase tracking-caps text-accent mb-4">
+            <ShieldCheck className="size-4" strokeWidth={1.5} />
+            Gwarancja satysfakcji
+          </p>
           <h2 className="font-display text-3xl md:text-4xl text-fg mb-4">
-            Odkryj Nasze Zapachy
+            Odkryj nasze zapachy
           </h2>
           <p className="text-muted text-sm mb-8">
             Trzy wyjątkowe kompozycje inspirowane miejscami i czasem. Wybierz swój ulubiony zapach lub zamów pełną Kolekcję 01 w darmowej dostawie.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              to="/"
-              className="w-full sm:w-auto px-8 py-3.5 bg-fg text-ink font-medium rounded hover:bg-accent transition-colors flex items-center justify-center gap-2"
-            >
-              <span>Zobacz Kolekcję 01</span>
-              <ArrowRight className="size-4" />
-            </Link>
+            <Button asChild size="lg">
+              <Link to="/">
+                Zobacz Kolekcję 01
+                <ArrowRight className="size-4" strokeWidth={1.5} />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

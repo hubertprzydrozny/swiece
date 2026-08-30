@@ -7,10 +7,10 @@ import { Toaster } from "sonner";
 
 export function SiteShell({ children }: { children: ReactNode }) {
   return (
-    <div className="flex min-h-svh flex-col bg-bg text-fg">
-      <TrustBar />
+    <div className="flex min-h-svh flex-col bg-bg">
       <Nav />
       <main className="flex-1">{children}</main>
+      <TrustBar />
       <Footer />
       <CartDrawer />
       <Toaster

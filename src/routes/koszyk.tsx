@@ -64,6 +64,7 @@ function CartPage() {
                   <Link
                     to="/zapach/$id"
                     params={{ id: product.id }}
+                    aria-label={product.name}
                     className="aspect-square overflow-hidden bg-surface"
                   >
                     <img

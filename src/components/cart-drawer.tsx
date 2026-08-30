@@ -54,6 +54,7 @@ export function CartDrawer() {
                       to="/zapach/$id"
                       params={{ id: product.id }}
                       onClick={() => setOpen(false)}
+                      aria-label={product.name}
                       className="size-20 shrink-0 overflow-hidden bg-surface"
                     >
                       <img

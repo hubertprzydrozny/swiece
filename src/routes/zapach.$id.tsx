@@ -1,5 +1,5 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 import { ClockTime } from "@/components/clock";
 import { ComparisonTable } from "@/components/comparison-table";
@@ -14,6 +14,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
+  BUNDLE_PRICES,
+  COLLECTION_IDS,
   getProduct,
   PRODUCT_FACTS,
   PRODUCT_LIST,
@@ -47,7 +49,10 @@ export const Route = createFileRoute("/zapach/$id")({
 function ProductPage() {
   const { product } = Route.useLoaderData() as { product: Product };
   const [qty, setQty] = useState(1);
-  const others = PRODUCT_LIST.filter((p) => p.id !== product.id);
+  const others = useMemo(
+    () => PRODUCT_LIST.filter((p) => p.id !== product.id),
+    [product.id],
+  );
   const [bundlePartner, setBundlePartner] = useState<ProductId>(others[0].id);
   const add = useCartStore((s) => s.add);
   const addMany = useCartStore((s) => s.addMany);
@@ -58,7 +63,7 @@ function ProductPage() {
   useEffect(() => {
     setQty(1);
     setBundlePartner(others[0].id);
-  }, [product.id]);
+  }, [others]);
 
   useEffect(() => {
     const el = actionsRef.current;
@@ -72,7 +77,7 @@ function ProductPage() {
 
   const addProduct = () => {
     add(product.id, qty);
-    toast(`Dodano do koszyka: ${product.name}`, {
+    toast(`Dodano: ${product.name}`, {
       action: { label: "Koszyk", onClick: () => setCartOpen(true) },
     });
   };
@@ -167,8 +172,8 @@ function ProductPage() {
             <div className="mt-5 flex flex-col gap-4 border-t border-line pt-5">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <p className="text-sm text-fg">Dwa zapachy · {formatPrice(169)}</p>
-                  <p className="mt-1 text-xs text-muted">Oszczędzasz {formatPrice(9)}.</p>
+                  <p className="text-sm text-fg">Dwa zapachy · {formatPrice(BUNDLE_PRICES.two)}</p>
+                  <p className="mt-1 text-xs text-muted">Oszczędzasz {formatPrice(BUNDLE_PRICES.one * 2 - BUNDLE_PRICES.two)}.</p>
                 </div>
                 <div className="flex gap-2">
                   <Select value={bundlePartner} onValueChange={(value) => setBundlePartner(value as ProductId)}>
@@ -186,7 +191,7 @@ function ProductPage() {
                     variant="outline"
                     onClick={() => {
                       addMany([product.id, bundlePartner]);
-                      toast("Dodano zestaw do koszyka", {
+                      toast("Dodano: Dwa zapachy", {
                         action: { label: "Koszyk", onClick: () => setCartOpen(true) },
                       });
                     }}
@@ -198,15 +203,15 @@ function ProductPage() {
 
               <div className="flex flex-col gap-3 border-t border-line pt-5 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <p className="text-sm text-fg">Cała kolekcja · {formatPrice(239)}</p>
-                  <p className="mt-1 text-xs text-muted">3 świece · oszczędzasz {formatPrice(28)} · darmowa dostawa.</p>
+                  <p className="text-sm text-fg">Cała kolekcja · {formatPrice(BUNDLE_PRICES.three)}</p>
+                  <p className="mt-1 text-xs text-muted">3 świece · oszczędzasz {formatPrice(BUNDLE_PRICES.one * 3 - BUNDLE_PRICES.three)} · darmowa dostawa.</p>
                 </div>
                 <Button
                   type="button"
                   variant="outline"
                   onClick={() => {
-                    addMany(["karkonosze", "ogrod", "baltyk"]);
-                    toast("Dodano zestaw do koszyka", {
+                    addMany(COLLECTION_IDS);
+                    toast("Dodano: Cała kolekcja", {
                       action: { label: "Koszyk", onClick: () => setCartOpen(true) },
                     });
                   }}

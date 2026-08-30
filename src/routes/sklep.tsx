@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { ProductCard } from "@/components/product-card";
 import { Button } from "@/components/ui/button";
-import { PRODUCT_LIST } from "@/lib/products";
+import { BUNDLE_PRICES, COLLECTION_IDS, PRODUCT_LIST } from "@/lib/products";
 import { formatPrice } from "@/lib/utils";
 import { useCartStore } from "@/store/cart";
 import { useUiStore } from "@/store/ui";
@@ -57,17 +57,17 @@ function ShopPage() {
               Trzy chwile. Jeden zestaw.
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
-              Karkonosze, Ogród i Bałtyk razem — {formatPrice(239)} zamiast {" "}
-              <span className="line-through">{formatPrice(267)}</span>. Darmowa dostawa w zestawie.
+              Karkonosze, Ogród i Bałtyk razem — {formatPrice(BUNDLE_PRICES.three)} zamiast{" "}
+              <span className="line-through">{formatPrice(BUNDLE_PRICES.one * COLLECTION_IDS.length)}</span>. Darmowa dostawa w zestawie.
             </p>
           </div>
           <div className="flex items-end justify-between gap-6 md:flex-col md:items-end">
-            <p className="font-display text-4xl font-medium tabular-nums">{formatPrice(239)}</p>
+            <p className="font-display text-4xl font-medium tabular-nums">{formatPrice(BUNDLE_PRICES.three)}</p>
             <Button
               type="button"
               onClick={() => {
-                addMany(["karkonosze", "ogrod", "baltyk"]);
-                toast("Dodano zestaw do koszyka", {
+                addMany(COLLECTION_IDS);
+                toast("Dodano: Zestaw Odkrywcy", {
                   action: { label: "Koszyk", onClick: () => setCartOpen(true) },
                 });
               }}
