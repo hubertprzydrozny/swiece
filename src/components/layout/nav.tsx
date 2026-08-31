@@ -1,7 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, ShoppingBag, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { NowMoment } from "@/components/now-moment";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { cartCount, useCartStore } from "@/store/cart";
@@ -9,7 +8,7 @@ import { useUiStore } from "@/store/ui";
 
 const LINKS = [
   { to: "/sklep", label: "Sklep", hash: undefined as string | undefined },
-  { to: "/jak-to-dziala", label: "Jak to działa", hash: undefined as string | undefined },
+  { to: "/jak-to-dziala", label: "Jak używać świec", hash: undefined as string | undefined },
   { to: "/", label: "Zapachy", hash: "zapachy" },
   { to: "/", label: "O LOMMA", hash: "o-lomma" },
   { to: "/", label: "FAQ", hash: "faq" },
@@ -22,6 +21,7 @@ export function Nav() {
   const items = useCartStore((s) => s.items);
   const setCartOpen = useUiStore((s) => s.setCartOpen);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const hash = useRouterState({ select: (s) => s.location.hash });
   const count = mounted ? cartCount(items) : 0;
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export function Nav() {
   return (
     <header className="sticky top-0 z-40 bg-bg/95 backdrop-blur-sm">
       <div className="border-b border-line/50 px-5 py-2 text-center font-mono text-[9px] uppercase tracking-[0.2em] text-muted md:text-2xs">
-        <NowMoment />
+        Darmowa dostawa od 199 zł
       </div>
 
       <div className="border-b border-line/70">
@@ -82,8 +82,12 @@ export function Nav() {
                     key={link.label}
                     to={link.to}
                     hash={link.hash}
-                    activeProps={{ className: "border-b border-fg pb-1 font-sans text-[11px] uppercase tracking-[0.08em] text-fg" }}
-                    className="pb-1 font-sans text-[11px] uppercase tracking-[0.08em] text-muted transition-colors hover:text-fg"
+                    className={cn(
+                      "pb-1 font-sans text-[11px] uppercase tracking-[0.08em] transition-colors",
+                      (link.hash ? link.hash === hash : pathname === link.to)
+                        ? "border-b border-fg text-fg"
+                        : "text-muted hover:text-fg",
+                    )}
                   >
                     {link.label}
                   </Link>

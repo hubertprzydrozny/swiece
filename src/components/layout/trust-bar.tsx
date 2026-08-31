@@ -1,5 +1,5 @@
 const ITEMS = [
-  "Ręcznie zalewane w Polsce",
+  "Premium świece sojowe z Polski",
   "Darmowa dostawa od 199 zł",
   "Naturalny wosk sojowy",
   "≈ 40 h palenia",

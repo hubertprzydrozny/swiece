@@ -76,7 +76,7 @@ export const PRODUCTS: Record<ProductId, Product> = {
     index: "02",
     name: "Wieczór w Karkonoszach",
     location: "Karkonosze",
-    time: "21:37",
+    time: "21:12",
     price: 89,
     notes: ["sosna", "żywica", "cedr"],
     character: "leśny · żywiczny · spokojny",
@@ -136,6 +136,8 @@ export const COLLECTION_IDS: ProductId[] = [
   "mazury",
 ];
 
+export const DAY_EVENING_IDS: ProductId[] = ["ogrod", "karkonosze"];
+
 export function isProductId(value: string): value is ProductId {
   return value in PRODUCTS;
 }
@@ -190,7 +192,7 @@ export const FAQ_ITEMS = [
 ] as const;
 
 export const TRUST_BADGES = [
-  { title: "Ręcznie zalewane", text: "W małych partiach w Polsce" },
+  { title: "Premium Jakość", text: "Wosk sojowy klasy premium z Polski" },
   { title: "100% Wosk Sojowy", text: "Bez toksyn, benzenu i kopcenia" },
   { title: "Darmowa Dostawa", text: "Dla zamówień od 199 zł" },
   { title: "30 Dni na Zwrot", text: "Gwarancja bezpiecznych zakupów" },

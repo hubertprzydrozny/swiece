@@ -28,14 +28,9 @@ export function ScentChapter({
     <article className="border-b border-line bg-bg py-24 md:py-32">
       <div className="mx-auto grid max-w-6xl items-center gap-16 px-5 md:grid-cols-2 md:px-8 lg:gap-24">
         <div className={reverse ? "md:order-2" : undefined}>
-          <div className="flex items-baseline justify-between gap-4">
-            <p className="font-mono text-2xs uppercase tracking-caps text-accent">
-              {product.index} / {product.location}
-            </p>
-            <span className="font-mono text-2xs text-muted">
-              {product.character}
-            </span>
-          </div>
+          <p className="font-mono text-2xs uppercase tracking-caps text-accent">
+            {product.index} / {product.location}
+          </p>
 
           <p className="mt-6 font-mono text-5xl md:text-6xl tracking-display text-fg/20 leading-none" style={{ letterSpacing: "-0.03em" }}>
             <ClockTime time={product.time} />

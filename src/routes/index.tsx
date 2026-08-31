@@ -6,7 +6,12 @@ import { ProductCard } from "@/components/product-card";
 import { ScentChapter } from "@/components/scent-chapter";
 import { ComparisonTable } from "@/components/comparison-table";
 import { Button } from "@/components/ui/button";
-import { BUNDLE_PRICES, COLLECTION_IDS, PRODUCT_LIST } from "@/lib/products";
+import {
+  BUNDLE_PRICES,
+  COLLECTION_IDS,
+  DAY_EVENING_IDS,
+  PRODUCT_LIST,
+} from "@/lib/products";
 import { formatPrice } from "@/lib/utils";
 import { useCartStore } from "@/store/cart";
 import { useUiStore } from "@/store/ui";
@@ -75,14 +80,13 @@ function Hero() {
           Kolekcja 01
         </p>
         <h1 className="reveal reveal-delay-1 mt-5 max-w-3xl font-display text-5xl font-medium leading-[0.9] tracking-display text-paper md:text-7xl">
-          Nie zatrzymasz chwili.
+          Niektóre wspomnienia
           <br />
-          <span className="italic text-sage-tint">Zachowasz jej zapach.</span>
+          <span className="italic text-sage-tint">mają swój zapach.</span>
         </h1>
         <p className="reveal reveal-delay-2 mt-6 max-w-xl text-base leading-relaxed text-paper/70 md:text-lg">
-          Zapachy do domu inspirowane miejscami, godzinami i atmosferą.
-          Cztery chwile dnia zamknięte w naturalnym wosku sojowym — ręcznie
-          zalewane w Polsce.
+          Zapachy inspirowane miejscami, godzinami i atmosferą. Premium
+          świece sojowe z Polski.
         </p>
         <div className="reveal reveal-delay-3 mt-8 flex flex-wrap items-center gap-3">
           <Button asChild size="lg" className="bg-paper text-hero-dark hover:bg-sage-tint hover:text-hero-dark">
@@ -96,6 +100,11 @@ function Hero() {
             <ArrowDown className="size-4" strokeWidth={1.5} />
           </a>
         </div>
+        <p className="reveal reveal-delay-4 mt-5 font-mono text-[10px] uppercase tracking-[0.2em] text-paper/60 md:text-2xs">
+          <a href="#kolekcja" className="transition-colors hover:text-paper">
+            Kolekcja I — Polska · wszystkie 4 zapachy w zestawie
+          </a>
+        </p>
       </div>
     </section>
   );
@@ -153,7 +162,7 @@ function MomentLine() {
 
 function QualityStrip() {
   const items = [
-    { n: "01", t: "Ręcznie zalewane", d: "W małych partiach w Polsce" },
+    { n: "01", t: "Premium jakość", d: "Wosk sojowy klasy premium" },
     { n: "02", t: "Naturalny wosk sojowy", d: "Spokojne, czyste spalanie" },
     { n: "03", t: "Około 40 h palenia", d: "180 g zapachu do domu" },
   ];
@@ -180,7 +189,14 @@ function BundleOffer() {
 
   const handleAddBundle = () => {
     addMany(COLLECTION_IDS);
-    toast("Dodano: Zestaw Odkrywcy", {
+    toast("Dodano: Kolekcja I — Polska", {
+      action: { label: "Koszyk", onClick: () => setCartOpen(true) },
+    });
+  };
+
+  const handleAddDayEvening = () => {
+    addMany(DAY_EVENING_IDS);
+    toast("Dodano: Zestaw Dzień / Wieczór", {
       action: { label: "Koszyk", onClick: () => setCartOpen(true) },
     });
   };
@@ -188,21 +204,23 @@ function BundleOffer() {
   const bundlePrice = BUNDLE_PRICES.three;
   const separatePrice = BUNDLE_PRICES.one * COLLECTION_IDS.length;
   const savings = separatePrice - bundlePrice;
+  const duoPrice = BUNDLE_PRICES.two;
+  const duoSeparatePrice = BUNDLE_PRICES.one * DAY_EVENING_IDS.length;
 
   return (
-    <section className="border-t border-line bg-surface/30 px-5 py-24 md:px-8">
+    <section id="kolekcja" className="scroll-mt-28 border-t border-line bg-surface/30 px-5 py-24 md:px-8">
       <div className="mx-auto max-w-5xl">
         <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
           <div>
             <p className="flex items-center gap-2 font-mono text-2xs uppercase tracking-caps text-accent">
               <Sparkles className="size-3.5" strokeWidth={1.5} />
-              Bestseller · Zestaw Odkrywcy
+              Bestseller · Kolekcja I — Polska
             </p>
             <h2 className="mt-4 font-display text-3xl font-medium leading-tight text-fg md:text-4xl">
-              Kolekcja 01 — pełny zestaw 4 świec
+              Cztery świece. Cztery miejsca. Jedna kolekcja.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-muted">
-              Odkryj wszystkie cztery historie zapachowe: Poranek w Ogrodzie (07:18), Popołudnie na Mazurach (15:42), Zachód nad Bałtykiem (20:46) oraz Wieczór w Karkonoszach (21:37).
+              Poranek w Ogrodzie (07:18), Popołudnie na Mazurach (15:42), Zachód nad Bałtykiem (20:46) oraz Wieczór w Karkonoszach (21:12) — cały dzień zapisany w zapachu.
             </p>
             <ul className="mt-6 space-y-3 font-mono text-2xs text-fg">
               <li className="flex items-center gap-2">
@@ -238,7 +256,33 @@ function BundleOffer() {
             </p>
 
             <Button onClick={handleAddBundle} size="lg" className="mt-6 w-full">
-              Dodaj zestaw
+              Dodaj Kolekcję I
+            </Button>
+          </div>
+        </div>
+
+        <div className="mt-12 grid items-center gap-6 border-t border-line pt-10 md:grid-cols-[1.2fr_0.8fr]">
+          <div>
+            <p className="font-mono text-2xs uppercase tracking-caps text-muted">
+              Zestaw 2 · Dzień / Wieczór
+            </p>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted">
+              Dla tych, którzy zaczynają od dwóch: jedna świeca na dzień —
+              Poranek w Ogrodzie (07:18) — i jedna na wieczór — Wieczór
+              w Karkonoszach (21:12).
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-4 md:justify-end">
+            <div className="flex items-baseline gap-3">
+              <span className="font-display text-3xl font-medium tabular-nums text-fg">
+                {formatPrice(duoPrice)}
+              </span>
+              <span className="font-mono text-sm text-muted line-through">
+                {formatPrice(duoSeparatePrice)}
+              </span>
+            </div>
+            <Button variant="outline" onClick={handleAddDayEvening}>
+              Dodaj zestaw 2
             </Button>
           </div>
         </div>
@@ -372,7 +416,7 @@ function GiftBand() {
           Na prezent
         </p>
         <h2 className="mt-4 font-display text-4xl font-medium tracking-display italic">
-          Idealna na prezent.
+          Prezent, który pachnie wspomnieniem.
         </h2>
         <p className="mt-4 text-muted">
           Dla kogoś lub dla siebie. Gotowa do wręczenia.

@@ -39,7 +39,7 @@ function ShopPage() {
 
       <div className="mt-10 flex flex-wrap gap-x-8 gap-y-2 border-y border-line py-4 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
         <span>180 g · ~40 h palenia</span>
-        <span>Ręcznie zalewane w Polsce</span>
+        <span>Premium świece sojowe z Polski</span>
         <span>Darmowa dostawa od 199 zł</span>
       </div>
 
@@ -54,7 +54,7 @@ function ShopPage() {
           <div>
             <p className="font-sans text-[11px] uppercase tracking-[0.12em] text-muted">Cała kolekcja</p>
             <h2 className="mt-3 font-display text-4xl font-medium tracking-display text-fg">
-              Cztery chwile. Jeden zestaw.
+              Kolekcja I — Polska
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
               Ogród, Mazury, Bałtyk i Karkonosze razem — {formatPrice(BUNDLE_PRICES.three)} zamiast{" "}
@@ -67,7 +67,7 @@ function ShopPage() {
               type="button"
               onClick={() => {
                 addMany(COLLECTION_IDS);
-                toast("Dodano: Zestaw Odkrywcy", {
+                toast("Dodano: Kolekcja I — Polska", {
                   action: { label: "Koszyk", onClick: () => setCartOpen(true) },
                 });
               }}
