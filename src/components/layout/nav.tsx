@@ -16,6 +16,7 @@ const LINKS = [
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [bannerVisible, setBannerVisible] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const items = useCartStore((s) => s.items);
@@ -32,11 +33,32 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    let lastScrollTop = 0;
+    const onScroll = () => {
+      const st = window.scrollY;
+      if (st > lastScrollTop) {
+        setBannerVisible(false);
+      } else {
+        setBannerVisible(true);
+      }
+      lastScrollTop = st <= 0 ? 0 : st;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   useEffect(() => setMenuOpen(false), [pathname]);
 
   return (
     <header className="sticky top-0 z-40 bg-bg/95 backdrop-blur-sm">
-      <div className="border-b border-line/50 px-5 py-2 text-center font-mono text-[9px] uppercase tracking-[0.2em] text-muted md:text-2xs">
+      <div
+        className={
+          "border-b border-line/50 px-5 py-2 text-center font-mono text-[9px] uppercase tracking-[0.2em] text-muted md:text-2xs" +
+          (bannerVisible ? " translate-y-0" : " -translate-y-full") +
+          " transition-transform duration-300"
+        }
+      >
         Darmowa dostawa od 199 zł
       </div>
 
