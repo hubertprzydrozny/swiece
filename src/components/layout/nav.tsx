@@ -1,6 +1,6 @@
+import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, ShoppingBag, X } from "lucide-react";
-import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { cartCount, useCartStore } from "@/store/cart";
@@ -37,10 +37,10 @@ export function Nav() {
     let lastScrollTop = 0;
     const onScroll = () => {
       const st = window.scrollY;
-      if (st > lastScrollTop) {
-        setBannerVisible(false);
-      } else {
+      if (st <= 0 || st < lastScrollTop) {
         setBannerVisible(true);
+      } else {
+        setBannerVisible(false);
       }
       lastScrollTop = st <= 0 ? 0 : st;
     };
@@ -53,13 +53,15 @@ export function Nav() {
   return (
     <header className="sticky top-0 z-40 bg-bg/95 backdrop-blur-sm">
       <div
-        className={
-          "border-b border-line/50 px-5 py-2 text-center font-mono text-[9px] uppercase tracking-[0.2em] text-muted md:text-2xs" +
-          (bannerVisible ? " translate-y-0" : " -translate-y-full") +
-          " transition-transform duration-300"
-        }
+        className={`grid overflow-hidden transition-[grid-template-rows] duration-300 ${
+          bannerVisible ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
       >
-        Darmowa dostawa od 199 zł
+        <div className="min-h-0 overflow-hidden">
+          <div className="border-b border-line/50 px-5 py-2 text-center font-mono text-[9px] uppercase tracking-[0.2em] text-muted md:text-2xs">
+            Darmowa dostawa od 199 zł
+          </div>
+        </div>
       </div>
 
       <div className="border-b border-line/70">
