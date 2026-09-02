@@ -2,18 +2,18 @@
 @import "tw-animate-css";
 
 @theme {
-  --color-bg: #f8f8f5;
-  --color-surface: #e7e6e1;
-  --color-elevated: #f3f2ee;
+  --color-bg: #f4f1ea;
+  --color-surface: #ece7db;
+  --color-elevated: #f8f6f0;
   --color-fg: #27261f;
   --color-muted: #26251e99;
   --color-accent: #27261f;
   --color-paper: #f8f8f5;
   --color-ink: #f8f8f5;
-  --color-line: #d4d4ce;
-  --color-line-strong: color-mix(in srgb, #27261f 28%, #d4d4ce);
+  --color-line: #d9d2c2;
+  --color-line-strong: color-mix(in srgb, #27261f 28%, #d9d2c2);
   --color-danger: #a6552f;
-  --color-sage-tint: #e7e6e1;
+  --color-sage-tint: #e9e3d5;
   --color-hero-dark: #27261f;
 
   --font-display: "Markazi Text", Georgia, "Times New Roman", serif;
@@ -138,6 +138,19 @@
   }
 }
 
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 700ms var(--ease-out-soft),
+    transform 700ms var(--ease-out-soft);
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
 .image-zoom {
   transition: transform 900ms var(--ease-out-soft);
 }
@@ -153,6 +166,7 @@
 
   .clock-colon,
   .reveal,
+  .reveal-on-scroll,
   .image-zoom {
     animation: none;
     transition: none;

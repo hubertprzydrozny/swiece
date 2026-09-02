@@ -3,6 +3,7 @@ import { ArrowUpRight, ShoppingBag } from "lucide-react";
 import { toast } from "sonner";
 import { ClockTime } from "@/components/clock";
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/reveal";
 import type { Product } from "@/lib/products";
 import { useCartStore } from "@/store/cart";
 import { useUiStore } from "@/store/ui";
@@ -27,7 +28,7 @@ export function ScentChapter({
   return (
     <article className="border-b border-line bg-bg py-24 md:py-32">
       <div className="mx-auto grid max-w-6xl items-center gap-16 px-5 md:grid-cols-2 md:px-8 lg:gap-24">
-        <div className={reverse ? "md:order-2" : undefined}>
+        <Reveal className={reverse ? "md:order-2" : undefined} delay={reverse ? 120 : 0}>
           <p className="font-mono text-2xs uppercase tracking-caps text-accent">
             {product.index} / {product.location}
           </p>
@@ -65,10 +66,10 @@ export function ScentChapter({
               Dodaj do koszyka
             </Button>
           </div>
-        </div>
+        </Reveal>
 
         {/* Apple: czyste zdjęcie bez ramek, całe na kremowym tle */}
-        <div className={reverse ? "md:order-1" : undefined}>
+        <Reveal className={reverse ? "md:order-1" : undefined} delay={reverse ? 0 : 120}>
           <Link
             to="/zapach/$id"
             params={{ id: product.id }}
@@ -83,7 +84,7 @@ export function ScentChapter({
               />
             </div>
           </Link>
-        </div>
+        </Reveal>
       </div>
     </article>
   );

@@ -3,6 +3,7 @@ import { ArrowDown, Flame, Scissors, Shield, Sparkles, Check, Truck } from "luci
 import { toast } from "sonner";
 import { FaqList } from "@/components/faq-list";
 import { ProductCard } from "@/components/product-card";
+import { Reveal } from "@/components/reveal";
 import { ScentChapter } from "@/components/scent-chapter";
 import { ComparisonTable } from "@/components/comparison-table";
 import { Button } from "@/components/ui/button";
@@ -59,52 +60,50 @@ function Home() {
 }
 
 function Hero() {
+  const scentTimes = [...PRODUCT_LIST].sort((a, b) => a.time.localeCompare(b.time));
   return (
-    <section className="relative isolate min-h-[80svh] overflow-hidden bg-hero-dark md:min-h-[86svh]">
-      <video
-        className="absolute inset-0 h-full w-full object-cover opacity-70"
-        autoPlay
-        muted
-        loop
-        playsInline
-        poster="/images/hero-still.jpg"
-        aria-hidden="true"
-      >
-        <source src="/videos/hero.mp4" type="video/mp4" />
-      </video>
-      <div className="absolute inset-0 bg-hero-dark/55" />
-      <div className="absolute inset-0 bg-gradient-to-r from-hero-dark/90 via-hero-dark/50 to-hero-dark/25" />
-      <div className="absolute inset-0 bg-gradient-to-t from-hero-dark via-hero-dark/30 to-transparent" />
-      <div className="relative z-10 mx-auto flex min-h-[80svh] max-w-6xl flex-col justify-center px-5 pb-16 pt-28 md:min-h-[86svh] md:px-8">
-        <p className="reveal font-mono text-[10px] uppercase tracking-[0.28em] text-paper/80 md:text-2xs">
+    <section className="relative overflow-hidden bg-bg">
+      <div className="mx-auto flex min-h-[68svh] max-w-6xl flex-col justify-center px-5 pb-16 pt-24 md:min-h-[74svh] md:px-8">
+        <p className="reveal font-mono text-[10px] uppercase tracking-[0.28em] text-muted md:text-2xs">
           Kolekcja 01
         </p>
-        <h1 className="reveal reveal-delay-1 mt-5 max-w-3xl font-display text-5xl font-medium leading-[0.9] tracking-display text-paper md:text-7xl">
+        <h1 className="reveal reveal-delay-1 mt-6 max-w-4xl font-display text-6xl font-medium leading-[0.92] tracking-display text-fg md:text-8xl">
           Niektóre wspomnienia
           <br />
-          <span className="italic text-sage-tint">mają swój zapach.</span>
+          <span className="italic">mają swój zapach.</span>
         </h1>
-        <p className="reveal reveal-delay-2 mt-6 max-w-xl text-base leading-relaxed text-paper/70 md:text-lg">
+        <p className="reveal reveal-delay-2 mt-7 max-w-xl text-base leading-relaxed text-muted md:text-lg">
           Zapachy inspirowane miejscami, godzinami i atmosferą. Premium
           świece sojowe z Polski.
         </p>
-        <div className="reveal reveal-delay-3 mt-8 flex flex-wrap items-center gap-3">
-          <Button asChild size="lg" className="bg-paper text-hero-dark hover:bg-sage-tint hover:text-hero-dark">
+        <div className="reveal reveal-delay-3 mt-9 flex flex-wrap items-center gap-3">
+          <Button asChild size="lg">
             <Link to="/sklep">Odkryj zapachy</Link>
           </Button>
           <a
             href="#zapachy"
-            className="inline-flex h-14 items-center gap-2 border border-paper/30 px-6 font-mono text-[10px] uppercase tracking-[0.2em] text-paper/80 transition-colors hover:border-paper/70 hover:text-paper md:text-2xs"
+            className="inline-flex h-14 items-center gap-2 border border-line-strong px-6 font-mono text-[10px] uppercase tracking-[0.2em] text-muted transition-colors hover:border-fg hover:text-fg md:text-2xs"
           >
             Zobacz kolekcję
             <ArrowDown className="size-4" strokeWidth={1.5} />
           </a>
         </div>
-        <p className="reveal reveal-delay-4 mt-5 font-mono text-[10px] uppercase tracking-[0.2em] text-paper/60 md:text-2xs">
-          <a href="#kolekcja" className="transition-colors hover:text-paper">
-            Kolekcja I — Polska · wszystkie 4 zapachy w zestawie
-          </a>
-        </p>
+      </div>
+      <div className="reveal reveal-delay-4 border-y border-line/70">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-8 gap-y-2 px-5 py-3.5 font-mono text-[10px] uppercase tracking-[0.2em] text-muted md:flex-nowrap md:justify-between md:px-8 md:text-2xs">
+          {scentTimes.map((product) => (
+            <a
+              key={product.id}
+              href="#zapachy"
+              className="whitespace-nowrap transition-colors hover:text-fg"
+            >
+              {product.time} {product.location}
+            </a>
+          ))}
+          <span className="hidden whitespace-nowrap text-fg md:inline">
+            Kolekcja I — Polska
+          </span>
+        </div>
       </div>
     </section>
   );
@@ -129,8 +128,10 @@ function QuickProducts() {
         </div>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {PRODUCT_LIST.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {PRODUCT_LIST.map((product, index) => (
+            <Reveal key={product.id} delay={(index % 4) * 90} className="h-full">
+              <ProductCard product={product} />
+            </Reveal>
           ))}
         </div>
       </div>

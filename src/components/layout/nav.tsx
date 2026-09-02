@@ -34,19 +34,39 @@ export function Nav() {
   }, []);
 
   useEffect(() => {
-    let lastScrollTop = 0;
+    let lastY = window.scrollY;
+    let suppressUntil = 0;
+    const THRESHOLD = 12;
     const onScroll = () => {
       const st = window.scrollY;
-      if (st <= 0 || st < lastScrollTop) {
-        setBannerVisible(true);
-      } else {
-        setBannerVisible(false);
+      const now = performance.now();
+      if (now < suppressUntil) {
+        // w trakcie animacji wysokości headera scroll-anchoring generuje
+        // fałszywe eventy — śledzimy pozycję, ale nie przełączamy paska
+        lastY = st;
+        return;
       }
-      lastScrollTop = st <= 0 ? 0 : st;
+      if (st <= 0) {
+        setBannerVisible(true);
+        lastY = st;
+      } else if (st > lastY + THRESHOLD) {
+        setBannerVisible(false);
+        lastY = st;
+        suppressUntil = now + 350;
+      } else if (st < lastY - THRESHOLD) {
+        setBannerVisible(true);
+        lastY = st;
+        suppressUntil = now + 350;
+      }
     };
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    setBannerVisible(true);
+  }, [pathname]);
 
   useEffect(() => setMenuOpen(false), [pathname]);
 
