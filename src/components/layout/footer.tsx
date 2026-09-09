@@ -2,18 +2,17 @@ import { Link } from "@tanstack/react-router";
 
 export function Footer() {
   return (
-    <footer className="border-t border-line bg-bg">
-      <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 md:grid-cols-[1.2fr_2fr] md:px-8">
+    <footer className="border-t border-line bg-surface/30">
+      <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:grid-cols-[1.2fr_2fr] md:px-8">
         <div>
-          <p className="font-sans text-lg font-medium tracking-brand uppercase">
+          <p className="font-sans text-xl font-light uppercase tracking-[0.35em] text-fg">
             Lomma
           </p>
-          <p className="mt-3 font-mono text-2xs uppercase tracking-caps text-muted">
-            Home Fragrance
+          <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+            Home Fragrance · Polska Manufaktura
           </p>
-          <p className="mt-6 max-w-xs text-sm leading-relaxed text-muted">
-            Zapachy do domu inspirowane miejscami, godzinami i atmosferą, do
-            których chce się wracać.
+          <p className="mt-5 max-w-xs text-xs leading-relaxed text-muted">
+            Świece sojowe tworzone z myślą o uważnych porankach i spokojnych wieczorach.
           </p>
         </div>
         <div className="grid gap-8 sm:grid-cols-3">

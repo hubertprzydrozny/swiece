@@ -35,46 +35,46 @@ export function ComparisonTable() {
   ];
 
   return (
-    <section className="py-16 md:py-24 border-t border-line bg-surface/30">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-12">
-          <span className="font-mono text-2xs uppercase tracking-caps text-accent block mb-2">
-            Dlaczego LOMMA?
+    <section className="py-20 md:py-28 border-t border-line bg-bg">
+      <div className="max-w-4xl mx-auto px-5 sm:px-6">
+        <div className="text-center mb-14">
+          <span className="font-mono text-2xs uppercase tracking-caps text-accent block mb-3">
+            Rzemiosło i Skład
           </span>
-          <h2 className="font-display text-3xl md:text-4xl text-fg">
-            Świeca sojowa LOMMA vs Zwykłe świece parafinowe
+          <h2 className="font-display text-3xl md:text-4xl font-light text-fg">
+            Świeca sojowa LOMMA vs Masowa parafina
           </h2>
-          <p className="mt-3 text-muted text-sm max-w-xl mx-auto">
-            Świadomy wybór dla Twojego zdrowia, wnętrza i domowej atmosfery.
+          <p className="mt-3 text-muted text-sm max-w-lg mx-auto leading-relaxed">
+            Świadomy wybór dla czystego powietrza, spokoju i domowej atmosfery.
           </p>
         </div>
 
-        <div className="overflow-x-auto border border-line bg-bg">
+        <div className="overflow-hidden rounded-xl border border-line bg-elevated shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
           <table className="w-full text-left text-sm border-collapse">
             <thead>
-              <tr className="border-b border-line bg-elevated">
-                <th className="py-4 px-4 font-mono text-xs uppercase tracking-wider text-muted">Cecha</th>
-                <th className="py-4 px-4 font-display text-base text-accent font-medium w-1/3">
-                  LOMMA Świece Sojowe
+              <tr className="border-b border-line bg-surface/60">
+                <th className="py-4 px-5 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Cecha</th>
+                <th className="py-4 px-5 font-mono text-[11px] uppercase tracking-[0.16em] text-fg font-medium w-1/3">
+                  LOMMA (Sojowa)
                 </th>
-                <th className="py-4 px-4 font-mono text-xs uppercase tracking-wider text-muted w-1/3">
-                  Zwykłe Świece (Parafina)
+                <th className="py-4 px-5 font-mono text-[10px] uppercase tracking-[0.16em] text-muted/70 w-1/3">
+                  Inne (Parafina)
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-line">
+            <tbody className="divide-y divide-line/60">
               {comparisonData.map((row, idx) => (
-                <tr key={idx}>
-                  <td className="py-4 px-4 font-medium text-fg">{row.feature}</td>
-                  <td className="py-4 px-4 text-fg">
+                <tr key={idx} className="transition-colors hover:bg-surface/30">
+                  <td className="py-4 px-5 font-medium text-fg text-xs">{row.feature}</td>
+                  <td className="py-4 px-5 text-fg text-xs">
                     <div className="flex items-center gap-2">
-                      <Check className="size-4 shrink-0 text-accent" strokeWidth={1.5} />
-                      <span>{row.lomma}</span>
+                      <Check className="size-4 shrink-0 text-fg" strokeWidth={1.75} />
+                      <span className="font-medium">{row.lomma}</span>
                     </div>
                   </td>
-                  <td className="py-4 px-4 text-muted">
+                  <td className="py-4 px-5 text-muted text-xs">
                     <div className="flex items-center gap-2">
-                      <X className="size-4 shrink-0 text-danger" strokeWidth={1.5} />
+                      <X className="size-4 shrink-0 text-muted/50" strokeWidth={1.5} />
                       <span>{row.others}</span>
                     </div>
                   </td>

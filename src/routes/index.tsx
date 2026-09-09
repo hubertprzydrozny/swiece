@@ -195,55 +195,61 @@ function BundleOffer() {
   const duoSeparatePrice = BUNDLE_PRICES.one * DAY_EVENING_IDS.length;
 
   return (
-    <section id="kolekcja" className="scroll-mt-28 border-t border-line bg-surface/30 px-5 py-24 md:px-8">
-      <div className="mx-auto max-w-5xl">
+    <section id="kolekcja" className="scroll-mt-28 border-t border-line bg-surface/40 px-5 py-24 md:py-32 md:px-8">
+      <div className="mx-auto max-w-5xl rounded-2xl border border-line bg-elevated p-8 md:p-12 shadow-[0_8px_30px_rgba(0,0,0,0.02)]">
         <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
           <div>
-            <p className="flex items-center gap-2 font-mono text-2xs uppercase tracking-caps text-accent">
+            <span className="inline-flex items-center gap-2 font-mono text-2xs uppercase tracking-caps text-accent mb-3">
               <Sparkles className="size-3.5" strokeWidth={1.5} />
               Bestseller · Kolekcja I — Polska
-            </p>
-            <h2 className="mt-4 font-display text-3xl font-medium leading-tight text-fg md:text-4xl">
-              Cztery świece. Cztery miejsca. Jedna kolekcja.
+            </span>
+            <h2 className="mt-2 font-display text-3xl md:text-4xl font-light leading-tight text-fg">
+              Cztery chwile. Cztery miejsca. Jeden rytuał.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-muted">
-              Poranek w Ogrodzie (07:18), Popołudnie na Mazurach (15:42), Zachód nad Bałtykiem (20:46) oraz Wieczór w Karkonoszach (21:12) — cały dzień zapisany w zapachu.
+              Poranek w Ogrodzie (07:18), Popołudnie na Mazurach (15:42), Zachód nad Bałtykiem (20:46) oraz Wieczór w Karkonoszach (21:12) — pełny cykl dnia w jednym luksusowym zestawie.
             </p>
             <ul className="mt-6 space-y-3 font-mono text-2xs text-fg">
-              <li className="flex items-center gap-2">
-                <Check className="size-4 shrink-0 text-accent" strokeWidth={1.5} />
-                <span>4x świeca sojowa 180g (Poranek, Karkonosze, Bałtyk, Mazury)</span>
+              <li className="flex items-center gap-2.5">
+                <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-surface text-fg">
+                  <Check className="size-3" strokeWidth={2} />
+                </span>
+                <span>Komplet 4 świec sojowych 180g w matowym szkle</span>
               </li>
-              <li className="flex items-center gap-2">
-                <Check className="size-4 shrink-0 text-accent" strokeWidth={1.5} />
-                <span>Darmowa wysyłka w cenie pakietu</span>
+              <li className="flex items-center gap-2.5">
+                <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-surface text-fg">
+                  <Check className="size-3" strokeWidth={2} />
+                </span>
+                <span>Darmowa wysyłka kurierem / paczkomatem</span>
               </li>
-              <li className="flex items-center gap-2">
-                <Check className="size-4 shrink-0 text-accent" strokeWidth={1.5} />
-                <span>Oszczędzasz {formatPrice(savings)} w porównaniu do osobnego zakupu</span>
+              <li className="flex items-center gap-2.5">
+                <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-surface text-fg">
+                  <Check className="size-3" strokeWidth={2} />
+                </span>
+                <span>Oszczędzasz {formatPrice(savings)} w pakiecie</span>
               </li>
             </ul>
           </div>
 
-          <div className="flex flex-col justify-center border-t border-line pt-8 text-center lg:border-l lg:border-t-0 lg:pl-10 lg:text-left">
+          <div className="flex flex-col justify-center rounded-xl bg-surface/50 p-6 md:p-8 text-center border border-line/60">
             <span className="font-mono text-2xs uppercase tracking-caps text-muted">
               Cena zestawu
             </span>
-            <div className="mt-3 flex items-baseline justify-center gap-3 lg:justify-start">
-              <span className="font-display text-5xl font-medium tabular-nums text-fg">
+            <div className="mt-3 flex items-baseline justify-center gap-3">
+              <span className="font-display text-4xl md:text-5xl font-light tabular-nums text-fg">
                 {formatPrice(bundlePrice)}
               </span>
               <span className="font-mono text-base text-muted line-through">
                 {formatPrice(separatePrice)}
               </span>
             </div>
-            <p className="mt-2 flex items-center justify-center gap-1.5 font-mono text-2xs uppercase tracking-caps text-accent lg:justify-start">
-              <Truck className="size-4" strokeWidth={1.5} />
-              Darmowa dostawa
+            <p className="mt-2 flex items-center justify-center gap-1.5 font-mono text-2xs uppercase tracking-caps text-accent">
+              <Truck className="size-3.5" strokeWidth={1.5} />
+              Darmowa dostawa w cenie
             </p>
 
-            <Button onClick={handleAddBundle} size="lg" className="mt-6 w-full">
-              Dodaj Kolekcję I
+            <Button onClick={handleAddBundle} size="lg" className="mt-6 w-full text-xs uppercase tracking-wider">
+              Dodaj Kolekcję I do koszyka
             </Button>
           </div>
         </div>
