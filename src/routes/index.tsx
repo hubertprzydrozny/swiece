@@ -36,25 +36,11 @@ function Home() {
     <>
       <Hero />
       <QuickProducts />
-      <MomentLine />
-      <QualityStrip />
-      <section id="zapachy" className="scroll-mt-28">
-        {PRODUCT_LIST.map((product, index) => (
-          <ScentChapter
-            key={product.id}
-            product={product}
-            reverse={index % 2 === 1}
-          />
-        ))}
-      </section>
       <BundleOffer />
       <ComparisonTable />
-      <Philosophy />
       <Atelier />
       <HowToBurn />
-      <GiftBand />
       <FaqSection />
-      <Closing />
     </>
   );
 }
@@ -111,7 +97,7 @@ function Hero() {
 
 function QuickProducts() {
   return (
-    <section className="bg-bg py-20 md:py-28" aria-label="Zapachy LOMMA">
+    <section id="zapachy" className="scroll-mt-28 bg-bg py-20 md:py-28" aria-label="Zapachy LOMMA">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-4 mb-12">
           <div>

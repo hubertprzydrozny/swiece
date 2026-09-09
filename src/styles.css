@@ -2,19 +2,19 @@
 @import "tw-animate-css";
 
 @theme {
-  --color-bg: #f4f1ea;
-  --color-surface: #ece7db;
-  --color-elevated: #f8f6f0;
-  --color-fg: #27261f;
-  --color-muted: #26251e99;
-  --color-accent: #27261f;
-  --color-paper: #f8f8f5;
-  --color-ink: #f8f8f5;
-  --color-line: #d9d2c2;
-  --color-line-strong: color-mix(in srgb, #27261f 28%, #d9d2c2);
+  --color-bg: #faf9f6;
+  --color-surface: #f2efe9;
+  --color-elevated: #ffffff;
+  --color-fg: #22211b;
+  --color-muted: #6b675d;
+  --color-accent: #22211b;
+  --color-paper: #ffffff;
+  --color-ink: #ffffff;
+  --color-line: #e8e4db;
+  --color-line-strong: #cfc9bd;
   --color-danger: #a6552f;
-  --color-sage-tint: #e9e3d5;
-  --color-hero-dark: #27261f;
+  --color-sage-tint: #f0ede4;
+  --color-hero-dark: #161512;
 
   --font-display: "Inter", "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-sans: "Inter", "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
