@@ -16,8 +16,8 @@
   --color-sage-tint: #e9e3d5;
   --color-hero-dark: #27261f;
 
-  --font-display: "Markazi Text", Georgia, "Times New Roman", serif;
-  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter", "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: "Inter", "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
 
   --text-2xs: 0.6875rem;
@@ -70,6 +70,8 @@
   h2,
   h3 {
     color: var(--color-fg);
+    font-weight: 300;
+    letter-spacing: -0.02em;
     text-wrap: balance;
   }
 
