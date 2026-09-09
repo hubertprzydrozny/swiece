@@ -48,50 +48,98 @@ function Home() {
 function Hero() {
   const scentTimes = [...PRODUCT_LIST].sort((a, b) => a.time.localeCompare(b.time));
   return (
-    <section className="relative overflow-hidden bg-bg">
-      <div className="mx-auto flex min-h-[68svh] max-w-6xl flex-col justify-center px-5 pb-16 pt-24 md:min-h-[74svh] md:px-8">
-        <p className="reveal font-mono text-[10px] uppercase tracking-[0.28em] text-muted md:text-2xs">
-          Kolekcja 01
-        </p>
-        <h1 className="reveal reveal-delay-1 mt-6 max-w-4xl font-display text-6xl font-medium leading-[0.92] tracking-display text-fg md:text-8xl">
-          Niektóre wspomnienia
-          <br />
-          <span className="italic">mają swój zapach.</span>
-        </h1>
-        <p className="reveal reveal-delay-2 mt-7 max-w-xl text-base leading-relaxed text-muted md:text-lg">
-          Zapachy inspirowane miejscami, godzinami i atmosferą. Premium
-          świece sojowe z Polski.
-        </p>
-        <div className="reveal reveal-delay-3 mt-9 flex flex-wrap items-center gap-3">
-          <Button asChild size="lg">
-            <Link to="/sklep">Odkryj zapachy</Link>
-          </Button>
-          <a
-            href="#zapachy"
-            className="inline-flex h-14 items-center gap-2 border border-line-strong px-6 font-mono text-[10px] uppercase tracking-[0.2em] text-muted transition-colors hover:border-fg hover:text-fg md:text-2xs"
+    <div className="w-full bg-bg p-2.5 sm:p-4">
+      <section className="relative w-full h-[calc(100vh-20px)] sm:h-[calc(100vh-32px)] min-h-[580px] overflow-hidden rounded-2xl sm:rounded-3xl bg-[#161512] text-white flex flex-col justify-between">
+        {/* Background Video */}
+        <video
+          className="absolute inset-0 h-full w-full object-cover pointer-events-none opacity-85"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          poster="/images/hero-still.jpg"
+          aria-hidden="true"
+        >
+          <source src="/videos/hero.mp4" type="video/mp4" />
+        </video>
+
+        {/* Ambient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+
+        {/* Top Spacer / Room for Nav */}
+        <div className="relative z-10 w-full pt-6 px-6" />
+
+        {/* Centered Hero Content */}
+        <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center px-4 py-8 text-center my-auto">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 backdrop-blur-md">
+            <span className="size-1.5 rounded-full bg-white animate-pulse" />
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/90">
+              Kolekcja I — Polska Manufaktura
+            </span>
+          </div>
+
+          {/* Headline with Instrument Serif */}
+          <h1
+            className="mt-6 font-display text-white font-light text-balance leading-[1.05]"
+            style={{ fontSize: "clamp(34px, 6.5vw, 68px)", letterSpacing: "-0.02em" }}
           >
-            Zobacz kolekcję
-            <ArrowDown className="size-4" strokeWidth={1.5} />
-          </a>
-        </div>
-      </div>
-      <div className="reveal reveal-delay-4 border-y border-line/70">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-8 gap-y-2 px-5 py-3.5 font-mono text-[10px] uppercase tracking-[0.2em] text-muted md:flex-nowrap md:justify-between md:px-8 md:text-2xs">
-          {scentTimes.map((product) => (
-            <a
-              key={product.id}
-              href="#zapachy"
-              className="whitespace-nowrap transition-colors hover:text-fg"
+            Nie zatrzymasz chwili.
+            <br />
+            <span
+              style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
+              className="italic font-normal text-white/95"
             >
-              {product.time} {product.location}
+              Zachowasz jej zapach.
+            </span>
+          </h1>
+
+          <p
+            className="mt-5 max-w-xl text-white/80 font-light leading-relaxed px-2"
+            style={{ fontSize: "clamp(13px, 2.5vw, 16px)" }}
+          >
+            Cztery naturalne świece sojowe inspirowane polskimi porami dnia,
+            miejscami i atmosferą, do której chce się wracać.
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <Button
+              asChild
+              size="lg"
+              className="rounded-full bg-white text-[#161512] hover:bg-white/90 hover:text-[#161512] border-0 px-8 font-medium text-xs tracking-wider uppercase h-12 sm:h-13"
+            >
+              <Link to="/sklep">Odkryj zapachy</Link>
+            </Button>
+            <a
+              href="#zapachy"
+              className="inline-flex h-12 sm:h-13 items-center gap-2 rounded-full border border-white/25 bg-black/20 backdrop-blur-md px-6 font-mono text-[10px] uppercase tracking-[0.2em] text-white/90 transition-colors hover:border-white hover:bg-black/40 hover:text-white"
+            >
+              Zobacz kolekcję
+              <ArrowDown className="size-3.5" strokeWidth={1.5} />
             </a>
-          ))}
-          <span className="hidden whitespace-nowrap text-fg md:inline">
-            Kolekcja I — Polska
-          </span>
+          </div>
         </div>
-      </div>
-    </section>
+
+        {/* Bottom Scent Times Strip inside Hero frame */}
+        <div className="relative z-10 w-full border-t border-white/10 bg-black/25 backdrop-blur-md">
+          <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-2 px-5 py-3.5 font-mono text-[10px] uppercase tracking-[0.2em] text-white/70 md:flex-nowrap md:justify-between md:px-8 md:text-2xs">
+            {scentTimes.map((product) => (
+              <a
+                key={product.id}
+                href="#zapachy"
+                className="whitespace-nowrap transition-colors hover:text-white"
+              >
+                {product.time} {product.location}
+              </a>
+            ))}
+            <span className="hidden whitespace-nowrap text-white md:inline">
+              100% Wosk Sojowy · Ręcznie Zalewane
+            </span>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
 

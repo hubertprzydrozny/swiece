@@ -71,127 +71,91 @@ export function Nav() {
   useEffect(() => setMenuOpen(false), [pathname]);
 
   return (
-    <header className="sticky top-0 z-40 bg-bg/95 backdrop-blur-sm">
-      <div
-        className={`grid overflow-hidden transition-[grid-template-rows] duration-300 ${
-          bannerVisible ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-        }`}
+    <header className="sticky top-0 z-50 w-full pt-3 sm:pt-4 px-3 sm:px-4 pointer-events-none">
+      <nav
+        className={cn(
+          "pointer-events-auto mx-auto max-w-[820px] rounded-full border border-neutral-200/80 bg-white/90 px-4 sm:px-6 py-2 shadow-sm backdrop-blur-md transition-all duration-300",
+          scrolled && "shadow-md bg-white/95 border-neutral-300/80",
+        )}
       >
-        <div className="min-h-0 overflow-hidden">
-          <div className="border-b border-line/50 px-5 py-2 text-center font-mono text-[9px] uppercase tracking-[0.2em] text-muted md:text-2xs">
-            Darmowa dostawa od 199 zł
-          </div>
-        </div>
-      </div>
-
-      <div className="border-b border-line/70">
-        <nav
-          className={cn(
-            "mx-auto max-w-7xl px-5 transition-shadow duration-300 md:px-8",
-            scrolled && "shadow-[0_10px_30px_rgba(39,38,31,0.04)]",
-          )}
-        >
-          <div className="grid min-h-16 grid-cols-[1fr_auto_1fr] items-center gap-4">
-            <div className="justify-self-start">
-              <button
-                type="button"
-                className="inline-flex size-10 items-center justify-center bg-transparent text-fg transition-colors hover:text-accent md:hidden"
-                aria-label={menuOpen ? "Zamknij menu" : "Otwórz menu"}
-                aria-expanded={menuOpen}
-                onClick={() => setMenuOpen((v) => !v)}
-              >
-                {menuOpen ? <X className="size-4" /> : <Menu className="size-4" />}
-              </button>
-
-              <Link
-                to="/"
-                className="hidden font-sans text-lg font-semibold uppercase tracking-[0.3em] text-fg transition-colors hover:text-accent md:inline-flex"
-              >
-                Lomma
-              </Link>
-            </div>
+        <div className="flex h-11 items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              className="inline-flex size-9 items-center justify-center rounded-full bg-neutral-100 text-fg transition-colors hover:bg-neutral-200 md:hidden"
+              aria-label={menuOpen ? "Zamknij menu" : "Otwórz menu"}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((v) => !v)}
+            >
+              {menuOpen ? <X className="size-4" /> : <Menu className="size-4" />}
+            </button>
 
             <Link
               to="/"
-              className="justify-self-center font-sans text-lg font-semibold uppercase tracking-[0.3em] text-fg md:hidden"
+              className="font-sans text-base font-semibold tracking-[0.25em] uppercase text-fg transition-colors hover:opacity-80"
               aria-label="LOMMA — strona główna"
             >
-              Lomma
+              LOMMA
             </Link>
-
-            <div className="hidden justify-self-center md:block">
-              <div className="flex items-center gap-8">
-                {LINKS.map((link) => (
-                  <Link
-                    key={link.label}
-                    to={link.to}
-                    hash={link.hash}
-                    className={cn(
-                      "pb-1 font-sans text-[11px] uppercase tracking-[0.08em] transition-colors",
-                      (link.hash ? link.hash === hash : pathname === link.to)
-                        ? "border-b border-fg text-fg"
-                        : "text-muted hover:text-fg",
-                    )}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex items-center justify-self-end gap-3 md:gap-5">
-              <Button asChild size="sm" className="hidden lg:inline-flex">
-                <Link to="/sklep">Odkryj zapachy</Link>
-              </Button>
-              <button
-                type="button"
-                className="text-fg transition-colors hover:text-accent"
-                onClick={() => setCartOpen(true)}
-                aria-label={`Koszyk, ${count} produktów`}
-              >
-                <span className="flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.08em]">
-                  <ShoppingBag className="size-4" strokeWidth={1.4} />
-                  <span className="hidden sm:inline">Koszyk</span>
-                  <span className="tabular-nums">{count}</span>
-                </span>
-              </button>
-            </div>
           </div>
 
-          {menuOpen ? (
-            <div className="border-t border-line py-5 md:hidden">
-              <div className="flex flex-col">
-                {LINKS.map((link) => (
-                  <Link
-                    key={link.label}
-                    to={link.to}
-                    hash={link.hash}
-                    className="border-b border-line/60 py-4 font-display text-2xl text-fg last:border-b-0"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-                <Button asChild className="mt-5 w-full">
-                  <Link to="/sklep" onClick={() => setMenuOpen(false)}>
-                    Odkryj zapachy
-                  </Link>
-                </Button>
-                <button
-                  type="button"
-                  className="mt-3 inline-flex h-12 w-full items-center justify-center border border-line-strong bg-transparent px-4 font-sans text-sm font-medium text-fg transition-colors hover:border-fg"
-                  onClick={() => {
-                    setMenuOpen(false);
-                    setCartOpen(true);
-                  }}
+          <div className="hidden items-center gap-6 md:flex">
+            {LINKS.map((link) => (
+              <Link
+                key={link.label}
+                to={link.to}
+                hash={link.hash}
+                className={cn(
+                  "font-sans text-xs tracking-wider uppercase transition-colors",
+                  (link.hash ? link.hash === hash : pathname === link.to)
+                    ? "text-fg font-medium"
+                    : "text-muted hover:text-fg",
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-2.5">
+            <Button asChild size="sm" className="hidden sm:inline-flex rounded-full px-4 h-8 text-[11px] font-medium tracking-wider uppercase bg-fg text-ink hover:opacity-90">
+              <Link to="/sklep">Sklep</Link>
+            </Button>
+            <button
+              type="button"
+              className="flex h-8 items-center gap-1.5 rounded-full border border-neutral-200 bg-neutral-50 px-3 text-fg transition-colors hover:bg-neutral-100"
+              onClick={() => setCartOpen(true)}
+              aria-label={`Koszyk, ${count} produktów`}
+            >
+              <ShoppingBag className="size-3.5" strokeWidth={1.5} />
+              <span className="font-mono text-xs font-semibold tabular-nums">{count}</span>
+            </button>
+          </div>
+        </div>
+
+        {menuOpen ? (
+          <div className="mt-3 border-t border-neutral-200/80 pt-3 pb-2 md:hidden">
+            <div className="flex flex-col gap-1">
+              {LINKS.map((link) => (
+                <Link
+                  key={link.label}
+                  to={link.to}
+                  hash={link.hash}
+                  className="rounded-xl px-3 py-2.5 font-sans text-sm tracking-wide text-fg hover:bg-neutral-100 transition-colors"
+                  onClick={() => setMenuOpen(false)}
                 >
-                  Otwórz koszyk · {count}
-                </button>
-              </div>
+                  {link.label}
+                </Link>
+              ))}
+              <Button asChild className="mt-2 w-full rounded-full text-xs uppercase tracking-wider">
+                <Link to="/sklep" onClick={() => setMenuOpen(false)}>
+                  Odkryj zapachy
+                </Link>
+              </Button>
             </div>
-          ) : null}
-        </nav>
-      </div>
+          </div>
+        ) : null}
+      </nav>
     </header>
   );
 }
