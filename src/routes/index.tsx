@@ -111,25 +111,25 @@ function Hero() {
 
 function QuickProducts() {
   return (
-    <section className="bg-bg py-24 md:py-32" aria-label="Zapachy LOMMA">
-      <div className="mx-auto max-w-6xl px-5 md:px-8">
-        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-4 mb-14">
+    <section className="bg-bg py-20 md:py-28" aria-label="Zapachy LOMMA">
+      <div className="mx-auto max-w-7xl px-5 md:px-8">
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-4 mb-12">
           <div>
-            <span className="font-sans text-[11px] uppercase tracking-[0.12em] text-accent mb-4">
+            <span className="font-mono text-2xs uppercase tracking-caps text-accent mb-3 block">
               Pierwsza Kolekcja
             </span>
-            <h2 className="font-display text-4xl md:text-5xl text-fg font-medium">
+            <h2 className="font-display text-3xl md:text-5xl font-light text-fg">
               Cztery zapachy.<br />Wybierz swój rytuał.
             </h2>
           </div>
           <span className="font-mono text-xs text-muted">
-            180g · ~40h palenia · Wosk sojowy
+            180g · ~40h palenia · Naturalny wosk sojowy
           </span>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {PRODUCT_LIST.map((product, index) => (
-            <Reveal key={product.id} delay={(index % 4) * 90} className="h-full">
+            <Reveal key={product.id} delay={(index % 4) * 80} className="h-full">
               <ProductCard product={product} />
             </Reveal>
           ))}

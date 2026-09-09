@@ -111,54 +111,54 @@
 }
 
 .reveal {
-  animation: reveal-up 700ms var(--ease-out-soft) both;
+  animation: reveal-up 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .reveal-delay-1 {
-  animation-delay: 80ms;
+  animation-delay: 100ms;
 }
 .reveal-delay-2 {
-  animation-delay: 160ms;
+  animation-delay: 200ms;
 }
 .reveal-delay-3 {
-  animation-delay: 240ms;
+  animation-delay: 300ms;
 }
 .reveal-delay-4 {
-  animation-delay: 320ms;
+  animation-delay: 400ms;
 }
 
 @keyframes reveal-up {
   from {
     opacity: 0;
-    transform: translateY(18px);
-    filter: blur(3px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
-    filter: blur(0);
   }
 }
 
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(28px);
   transition:
-    opacity 700ms var(--ease-out-soft),
-    transform 700ms var(--ease-out-soft);
+    opacity 800ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
 .reveal-on-scroll.is-visible {
   opacity: 1;
-  transform: none;
+  transform: translateY(0);
 }
 
 .image-zoom {
-  transition: transform 900ms var(--ease-out-soft);
+  transition: transform 1000ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
 
 .group:hover .image-zoom {
-  transform: scale(1.02);
+  transform: scale(1.035);
 }
 
 @media (prefers-reduced-motion: reduce) {
