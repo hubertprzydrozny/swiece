@@ -81,19 +81,23 @@ function Hero() {
           </div>
 
           {/* Headline with Instrument Serif */}
-          <h1
-            className="mt-6 font-display text-white font-light text-balance leading-[1.05]"
-            style={{ fontSize: "clamp(34px, 6.5vw, 68px)", letterSpacing: "-0.02em" }}
-          >
-            Nie zatrzymasz chwili.
-            <br />
-            <span
-              style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
-              className="italic font-normal text-white/95"
+            <h1
+              className="mt-6 font-display text-white font-light text-balance leading-[1.05] reveal-on-scroll"
+              style={{ fontSize: "clamp(34px, 6.5vw, 68px)", letterSpacing: "-0.02em" }}
             >
-              Zachowasz jej zapach.
-            </span>
-          </h1>
+              <span className="text-reveal-mask">
+                <span className="text-reveal-child">Nie zatrzymasz chwili.</span>
+              </span>
+              <br />
+              <span className="text-reveal-mask">
+                <span
+                  style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
+                  className="italic font-normal text-white/95 text-reveal-child"
+                >
+                  Zachowasz jej zapach.
+                </span>
+              </span>
+            </h1>
 
           <p
             className="mt-5 max-w-xl text-white/80 font-light leading-relaxed px-2"
