@@ -9,6 +9,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
+import { useMediaQuery } from "@/hooks/use-media-query";
 import { FREE_SHIPPING_THRESHOLD, PRODUCTS } from "@/lib/products";
 import { formatPrice } from "@/lib/utils";
 import { cartTotals, useCartStore } from "@/store/cart";
@@ -22,9 +23,19 @@ export function CartDrawer() {
   const remove = useCartStore((s) => s.remove);
   const totals = cartTotals(items);
 
+  const isDesktop = useMediaQuery("(min-width: 768px)");
+
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-  <SheetContent side="bottom" className="bg-[#FFFFFF] md:w-[500px] md:max-w-[500px] md:h-auto">
+      <SheetContent
+        side={isDesktop ? "right" : "bottom"}
+        className="bg-[#FFFFFF] flex flex-col md:max-w-md"
+      >
+        {/* Drag handle — only visible on mobile bottom sheet */}
+        {!isDesktop && (
+          <div className="mx-auto mb-1 mt-2 h-1 w-10 shrink-0 rounded-full bg-line" />
+        )}
+
         <SheetHeader>
           <SheetTitle>Koszyk</SheetTitle>
           <SheetDescription>
@@ -33,6 +44,7 @@ export function CartDrawer() {
               : `${totals.quantity} ${totals.quantity === 1 ? "świeca" : "świece"}`}
           </SheetDescription>
         </SheetHeader>
+
         <div className="flex-1 overflow-y-auto px-6 py-4">
           {items.length === 0 ? (
             <div className="flex h-full flex-col items-center justify-center gap-5 py-16 text-center">
@@ -91,8 +103,9 @@ export function CartDrawer() {
             </ul>
           )}
         </div>
+
         {items.length > 0 ? (
-          <div className="border-t border-line bg-bg px-6 py-5">
+          <div className="border-t border-line bg-[#FFFFFF] px-6 py-5">
             <div className="mb-5 border-y border-line bg-transparent py-4">
               <div className="flex items-center justify-between gap-3 font-mono text-2xs uppercase tracking-caps">
                 <span className={totals.missingForFree > 0 ? "text-muted" : "text-accent"}>

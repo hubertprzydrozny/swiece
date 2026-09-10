@@ -43,7 +43,7 @@ export function SheetContent({
           side === "left" &&
             "inset-y-0 left-0 h-full w-full max-w-md border-r border-line data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left",
           side === "bottom" &&
-            "inset-x-0 bottom-0 border-t border-line data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
+            "inset-x-0 bottom-0 border-t border-line rounded-t-2xl max-h-[90dvh] data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
           className,
         )}
         {...props}
