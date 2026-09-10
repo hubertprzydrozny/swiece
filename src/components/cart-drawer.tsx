@@ -24,7 +24,7 @@ export function CartDrawer() {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetContent className="bg-bg">
+  <SheetContent side="bottom" className="bg-[#FFFFFF] md:w-[500px] md:max-w-[500px] md:h-auto">
         <SheetHeader>
           <SheetTitle>Koszyk</SheetTitle>
           <SheetDescription>
