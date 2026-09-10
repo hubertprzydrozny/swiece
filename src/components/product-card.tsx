@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { ShoppingBag } from "lucide-react";
-import { toast } from "sonner";
 import { ClockTime } from "@/components/clock";
 import { Button } from "@/components/ui/button";
 import type { Product } from "@/lib/products";
@@ -10,14 +9,13 @@ import { useUiStore } from "@/store/ui";
 
 export function ProductCard({ product }: { product: Product }) {
   const add = useCartStore((s) => s.add);
-  const setCartOpen = useUiStore((s) => s.setCartOpen);
+  const setAddedProduct = useUiStore((s) => s.setAddedProduct);
 
   const handleAdd = () => {
     add(product.id, 1);
-    toast(`Dodano: ${product.name}`, {
-      action: { label: "Koszyk", onClick: () => setCartOpen(true) },
-    });
+    setAddedProduct(product.id);
   };
+
 
   return (
     <article className="group flex h-full flex-col border-t border-line bg-transparent pt-4 pb-6 transition-colors duration-300 hover:border-fg">

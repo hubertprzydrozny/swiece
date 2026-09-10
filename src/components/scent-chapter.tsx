@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, ShoppingBag } from "lucide-react";
-import { toast } from "sonner";
 import { ClockTime } from "@/components/clock";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/reveal";
@@ -16,14 +15,13 @@ export function ScentChapter({
   reverse?: boolean;
 }) {
   const add = useCartStore((s) => s.add);
-  const setCartOpen = useUiStore((s) => s.setCartOpen);
+  const setAddedProduct = useUiStore((s) => s.setAddedProduct);
 
   const handleAddToCart = () => {
     add(product.id, 1);
-    toast(`Dodano: ${product.name}`, {
-      action: { label: "Koszyk", onClick: () => setCartOpen(true) },
-    });
+    setAddedProduct(product.id);
   };
+
 
   return (
     <article className="border-b border-line bg-bg py-24 md:py-32">

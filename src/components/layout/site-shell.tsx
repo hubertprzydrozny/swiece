@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { AddedToCartModal } from "@/components/added-to-cart-modal";
 import { CartDrawer } from "@/components/cart-drawer";
 import { Footer } from "@/components/layout/footer";
 import { Nav } from "@/components/layout/nav";
@@ -13,6 +14,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <TrustBar />
       <Footer />
       <CartDrawer />
+      <AddedToCartModal />
       <Toaster
         position="bottom-center"
         toastOptions={{

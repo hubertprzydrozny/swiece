@@ -1,6 +1,5 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { toast } from "sonner";
 import { ClockTime } from "@/components/clock";
 import { ComparisonTable } from "@/components/comparison-table";
 import { ProductCard } from "@/components/product-card";
@@ -56,6 +55,7 @@ function ProductPage() {
   const [bundlePartner, setBundlePartner] = useState<ProductId>(others[0].id);
   const add = useCartStore((s) => s.add);
   const addMany = useCartStore((s) => s.addMany);
+  const setAddedProduct = useUiStore((s) => s.setAddedProduct);
   const setCartOpen = useUiStore((s) => s.setCartOpen);
   const actionsRef = useRef<HTMLDivElement>(null);
   const [sticky, setSticky] = useState(false);
@@ -77,9 +77,7 @@ function ProductPage() {
 
   const addProduct = () => {
     add(product.id, qty);
-    toast(`Dodano: ${product.name}`, {
-      action: { label: "Koszyk", onClick: () => setCartOpen(true) },
-    });
+    setAddedProduct(product.id);
   };
 
   return (
@@ -191,9 +189,7 @@ function ProductPage() {
                     variant="outline"
                     onClick={() => {
                       addMany([product.id, bundlePartner]);
-                      toast("Dodano: Dwa zapachy", {
-                        action: { label: "Koszyk", onClick: () => setCartOpen(true) },
-                      });
+                      setCartOpen(true);
                     }}
                   >
                     Dodaj
@@ -211,9 +207,7 @@ function ProductPage() {
                   variant="outline"
                   onClick={() => {
                     addMany(COLLECTION_IDS);
-                    toast("Dodano: Cała kolekcja", {
-                      action: { label: "Koszyk", onClick: () => setCartOpen(true) },
-                    });
+                    setCartOpen(true);
                   }}
                 >
                   Dodaj
