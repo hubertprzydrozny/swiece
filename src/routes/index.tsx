@@ -48,7 +48,7 @@ function Home() {
 function Hero() {
   const scentTimes = [...PRODUCT_LIST].sort((a, b) => a.time.localeCompare(b.time));
   return (
-    <div className="w-full bg-bg p-2.5 sm:p-4">
+    <div className="w-full bg-[#FFFFFF] p-2.5 sm:p-4">
       <section className="relative w-full h-[calc(100vh-20px)] sm:h-[calc(100vh-32px)] min-h-[580px] overflow-hidden rounded-2xl sm:rounded-3xl bg-[#161512] text-white flex flex-col justify-between">
         {/* Background Video */}
         <video
