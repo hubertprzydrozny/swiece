@@ -7,10 +7,9 @@ import { cartCount, useCartStore } from "@/store/cart";
 import { useUiStore } from "@/store/ui";
 
 const LINKS = [
+  { to: "/", label: "Kolekcja", hash: "kolekcja" },
   { to: "/sklep", label: "Sklep", hash: undefined as string | undefined },
-  { to: "/jak-to-dziala", label: "Jak używać świec", hash: undefined as string | undefined },
-  { to: "/", label: "Zapachy", hash: "zapachy" },
-  { to: "/", label: "O LOMMA", hash: "o-lomma" },
+  { to: "/jak-to-dziala", label: "Jak używać", hash: undefined as string | undefined },
   { to: "/", label: "FAQ", hash: "faq" },
 ] as const;
 

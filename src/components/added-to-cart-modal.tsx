@@ -12,7 +12,6 @@ const AUTO_CLOSE_MS = 4000;
 export function AddedToCartModal() {
   const addedProductId = useUiStore((s) => s.addedProductId);
   const setAddedProduct = useUiStore((s) => s.setAddedProduct);
-  const setCartOpen = useUiStore((s) => s.setCartOpen);
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -27,11 +26,6 @@ export function AddedToCartModal() {
       if (timerRef.current) clearTimeout(timerRef.current);
     };
   }, [open, addedProductId, setAddedProduct]);
-
-  const handleGoToCart = () => {
-    setAddedProduct(null);
-    setCartOpen(true);
-  };
 
   const handleClose = () => setAddedProduct(null);
 
@@ -95,9 +89,11 @@ export function AddedToCartModal() {
 
           {/* Actions */}
           <div className="flex flex-col gap-2 px-4 pb-4">
-            <Button className="w-full text-xs h-9" onClick={handleGoToCart}>
-              <ShoppingBag className="size-3.5 mr-1.5" strokeWidth={1.5} />
-              Przejdź do koszyka
+            <Button asChild className="w-full text-xs h-9" onClick={handleClose}>
+              <Link to="/koszyk">
+                <ShoppingBag className="size-3.5 mr-1.5" strokeWidth={1.5} />
+                Przejdź do koszyka
+              </Link>
             </Button>
             <button
               type="button"
@@ -184,17 +180,19 @@ export function AddedToCartModal() {
 
         {/* Actions */}
         <div className="flex flex-col gap-3 px-6 pb-8">
-          <Button className="w-full h-12 text-sm" onClick={handleGoToCart}>
-            <ShoppingBag className="size-4 mr-2" strokeWidth={1.5} />
-            Przejdź do koszyka
+          <Button asChild className="w-full h-12 text-sm" onClick={handleClose}>
+            <Link to="/koszyk">
+              <ShoppingBag className="size-4 mr-2" strokeWidth={1.5} />
+              Przejdź do koszyka
+            </Link>
           </Button>
-          <Link
-            to="/sklep"
+          <button
+            type="button"
             onClick={handleClose}
             className="text-center font-mono text-[10px] uppercase tracking-caps text-muted hover:text-fg transition-colors py-2"
           >
             Kontynuuj zakupy
-          </Link>
+          </button>
         </div>
       </div>
     </>
